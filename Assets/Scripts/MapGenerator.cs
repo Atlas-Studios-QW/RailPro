@@ -30,14 +30,23 @@ public class MapGenerator : MonoBehaviour
             {
                 for (int y = 0; y < LoadedSavegame.mapSize.y; y++)
                 {
+                    // Instantiate a tile
                     GameObject NewTile = Instantiate(GH.BaseTile, new Vector3(x,0,y), new Quaternion(0,0,0,0), GH.MapTiles.transform);
                     NewTile.name = CurrentID.ToString();
+
+                    if (LoadedSavegame.tiles.Count > 0)
+                    {
+                        //Existing savegame, use data and set it to the tile
+                    }
+                    else
+                    {
+                        // New savegame, add empty tile
+                        GH.Savegame.tiles.Add(new Tile(CurrentID, null));
+                    }
                     CurrentID++;
                 }
             }
-
         }
-
         GH.MapBorders.SetActive(false);
     }
 }

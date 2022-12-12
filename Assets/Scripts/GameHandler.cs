@@ -14,12 +14,20 @@ public class GameHandler : MonoBehaviour
     public GameObject MapTiles;
     public GameObject MapBorders;
 
+    [Header("UIObjects")]
+    public GameObject UICanvas;
+    public GameObject BuildMenu;
+
     [Header("Prefabs")]
     public GameObject BaseTile;
     public GameObject TileBorder;
 
     [Header("Settings")]
     public float CameraSpeed = 10;
+
+    [Header("Buildables")]
+    public List<Buildable> Tracks;
+    public List<Buildable> Buildings;
 
     [Header("Loaded Savegame")]
     public Savegame Savegame;

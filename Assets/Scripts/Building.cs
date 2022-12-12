@@ -9,20 +9,31 @@ public class Building : MonoBehaviour
 
     private bool InBuildMode = false;
 
-    public void SwitchBuildMode ()
+    public void SwitchBuildMode()
     {
-        if (InBuildMode) { ExitBuildMode(); }
-        else { EnterBuildMode(); }
+        if (InBuildMode) {
+            GH.MapBorders.SetActive(false);
+        }
+        else {
+            GH.MapBorders.SetActive(true);
+        }
         InBuildMode = !InBuildMode;
     }
 
-    private void EnterBuildMode()
+    private void Update()
     {
-        GH.MapBorders.SetActive(true);
-    }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (InBuildMode)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-    private void ExitBuildMode()
-    {
-        GH.MapBorders.SetActive(false);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    print(hit.transform.gameObject);
+                    //if (hit.transform.name == "MyObjectName") Debug.Log("My object is clicked by mouse");
+                }
+            }
+        }
     }
 }
