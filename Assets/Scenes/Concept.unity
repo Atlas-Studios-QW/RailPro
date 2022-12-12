@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaveData:
-    mapSize: {x: 1000, y: 1000}
+    mapSize: {x: 100, y: 100}
   Player: {fileID: 52739956}
   MapTiles: {fileID: 790424924}
   MapBorders: {fileID: 1418343636}
