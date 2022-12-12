@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -7,32 +8,38 @@ public class CameraMovement : MonoBehaviour
     [Header("Connect GameHandler")]
     public GameHandler GH;
 
-    [Header("Settings")]
-    public float CameraSpeed = 10;
-    
-    [Header("Game Objects")]
-    public GameObject Player;
-
+    private float CameraSpeed;
     private Savegame Savegame;
+    private GameObject Player;
+    private Vector3 PlayerPos;
 
+    // Get data from GameHandler
     private void Start()
     {
+        CameraSpeed = GH.CameraSpeed;
         Savegame = GH.Savegame;
-        Player.transform.position = new Vector3(GH.Savegame.mapSize.x / 2, 25f, Savegame.mapSize.y / 2);
+        Player = GH.Player;
+        // Set camera to center of map
+        Player.transform.position = new Vector3(Savegame.mapSize.x / 2, 25f, Savegame.mapSize.y / 2);
     }
 
     void Update()
     {
-        Vector3 Movement = Player.transform.position + new Vector3(Input.GetAxis("Horizontal") * CameraSpeed * (Player.transform.position.y / 100), Input.GetAxis("ScrollWheel") * -1000 * CameraSpeed, Input.GetAxis("Vertical") * CameraSpeed * (Player.transform.position.y / 100));
+        PlayerPos = GH.Player.transform.position;
+        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * CameraSpeed * (PlayerPos.y / 100), Input.GetAxis("ScrollWheel") * -1000 * CameraSpeed, Input.GetAxis("Vertical") * CameraSpeed * (PlayerPos.y / 100));
 
-        Player.transform.position = Vector3.MoveTowards(Player.transform.position, Movement, Time.deltaTime * CameraSpeed);
-        
-        Vector3 PlayerPos = Player.transform.position;
-        if (PlayerPos.x > Savegame.mapSize.x) { Player.transform.position = new Vector3(Savegame.mapSize.x, PlayerPos.y, PlayerPos.z); }
-        if (PlayerPos.x < 0) { Player.transform.position = new Vector3(0, PlayerPos.y, PlayerPos.z); }
-        if (PlayerPos.y > 100f) { Player.transform.position = new Vector3(PlayerPos.x,100f,PlayerPos.z); }
-        if (PlayerPos.y < 1) { Player.transform.position = new Vector3(PlayerPos.x, 1, PlayerPos.z); }
-        if (PlayerPos.z > Savegame.mapSize.y) { Player.transform.position = new Vector3(PlayerPos.x, PlayerPos.y, Savegame.mapSize.y); }
-        if (PlayerPos.z < 0) { Player.transform.position = new Vector3(PlayerPos.x, PlayerPos.y, 0); }
+        Vector2 MapSize = Savegame.mapSize;
+
+        GH.Player.transform.position = Vector3.MoveTowards(PlayerPos, Movement, Time.deltaTime * CameraSpeed);
+
+        PlayerPos = GH.Player.transform.position;
+
+        // Limits camera movement
+        if (PlayerPos.x < 0) { GH.Player.transform.position = new Vector3(0,PlayerPos.y,PlayerPos.z);}
+        if (PlayerPos.x > MapSize.x) { GH.Player.transform.position = new Vector3(MapSize.x,PlayerPos.y,PlayerPos.z);}
+        if (PlayerPos.y < 1) { GH.Player.transform.position = new Vector3(PlayerPos.x,1.001f,PlayerPos.z);}
+        if (PlayerPos.y > MapSize.x) { GH.Player.transform.position = new Vector3(PlayerPos.x,MapSize.x,PlayerPos.z);}
+        if (PlayerPos.z < 0) { GH.Player.transform.position = new Vector3(PlayerPos.x,PlayerPos.y,0);}
+        if (PlayerPos.z > MapSize.y) { GH.Player.transform.position = new Vector3(PlayerPos.x,PlayerPos.y,MapSize.y);}
     }
 }

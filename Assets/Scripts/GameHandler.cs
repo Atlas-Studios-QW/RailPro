@@ -10,12 +10,16 @@ public class GameHandler : MonoBehaviour
 
     //All variables that do not change during playtime will be set in the GameHandler to prevent repetition and to increase ease of change
     [Header("Objects")]
+    public GameObject Player;
     public GameObject MapTiles;
     public GameObject MapBorders;
 
     [Header("Prefabs")]
     public GameObject BaseTile;
     public GameObject TileBorder;
+
+    [Header("Settings")]
+    public float CameraSpeed = 10;
 
     [Header("Loaded Savegame")]
     public Savegame Savegame;

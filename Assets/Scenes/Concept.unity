@@ -823,8 +823,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GH: {fileID: 890160215}
-  CameraSpeed: 25
-  Player: {fileID: 52739956}
 --- !u!114 &890160212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,12 +872,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6182a9f589a55ec409ea2bed4c224547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveData:
+    mapSize: {x: 1000, y: 1000}
+  Player: {fileID: 52739956}
   MapTiles: {fileID: 790424924}
   MapBorders: {fileID: 1418343636}
   BaseTile: {fileID: 7065376605882253457, guid: 3482226f31fcc764094ff042136f1c7a,
     type: 3}
   TileBorder: {fileID: 8436848889643586178, guid: 616f1a704c026b64e843603a696c126a,
     type: 3}
+  CameraSpeed: 20
+  Savegame:
+    mapSize: {x: 0, y: 0}
 --- !u!114 &890160216
 MonoBehaviour:
   m_ObjectHideFlags: 0

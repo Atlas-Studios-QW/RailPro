@@ -8,6 +8,7 @@ using UnityEngine;
 public class CustomClasses : MonoBehaviour {}
 
 // Savegame class which stores all data that has to be saved.
+[System.Serializable]
 public class Savegame
 {
     public Vector2 mapSize; //?? Remove after generating for first time?
