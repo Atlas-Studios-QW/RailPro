@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &259633125043846032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259633125043846035}
+  - component: {fileID: 259633125043846038}
+  - component: {fileID: 259633125043846039}
+  - component: {fileID: 259633125043846036}
+  - component: {fileID: 259633125043846034}
+  - component: {fileID: 259633125043846037}
+  - component: {fileID: 259633125043846041}
+  - component: {fileID: 259633125043846040}
+  m_Layer: 0
+  m_Name: ScriptHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259633125043846035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259633125043846038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6182a9f589a55ec409ea2bed4c224547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SaveData:
+    mapSize: {x: 100, y: 100}
+    tiles: []
+  Player: {fileID: 0}
+  MapTiles: {fileID: 0}
+  MapBorders: {fileID: 0}
+  UICanvas: {fileID: 0}
+  BuildMenu: {fileID: 0}
+  BaseTile: {fileID: 7065376605882253457, guid: 3482226f31fcc764094ff042136f1c7a,
+    type: 3}
+  TileBorder: {fileID: 8436848889643586178, guid: 616f1a704c026b64e843603a696c126a,
+    type: 3}
+  BuildableIconBase: {fileID: 7326955912213138425, guid: 697a33664a308ad408682fd8d8879f19,
+    type: 3}
+  CameraSpeed: 20
+  Tracks:
+  - name: Horizontal
+    type: 0
+    model: {fileID: 3418496914229604897, guid: fc00985a611dcc749a20f8a755a9b0ad, type: 3}
+    icon: {fileID: 0}
+    description: Basic Track
+    price: 10
+  Buildings: []
+  Savegame:
+    mapSize: {x: 0, y: 0}
+    tiles: []
+--- !u!114 &259633125043846039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153b15b5e05641e4b9f1897b27130c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &259633125043846036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cf58dbcc57c0b4e9c4267b753b2207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GH: {fileID: 259633125043846038}
+--- !u!114 &259633125043846034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10d2f070a863c0498a061409584356a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GH: {fileID: 259633125043846038}
+--- !u!114 &259633125043846037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b961a641f262fdd428662cccd472cab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &259633125043846041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b1a67b4f4753b498f720b23b32f494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GH: {fileID: 259633125043846038}
+--- !u!114 &259633125043846040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489fded7223274b42bc28c81a3e69868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GH: {fileID: 259633125043846038}
+  SelectedBuildable: {fileID: 0}

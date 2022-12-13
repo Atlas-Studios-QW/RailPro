@@ -21,6 +21,7 @@ public class GameHandler : MonoBehaviour
     [Header("Prefabs")]
     public GameObject BaseTile;
     public GameObject TileBorder;
+    public GameObject BuildableIconBase;
 
     [Header("Settings")]
     public float CameraSpeed = 10;

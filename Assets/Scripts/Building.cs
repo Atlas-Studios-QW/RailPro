@@ -31,7 +31,6 @@ public class Building : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     print(hit.transform.gameObject);
-                    //if (hit.transform.name == "MyObjectName") Debug.Log("My object is clicked by mouse");
                 }
             }
         }
