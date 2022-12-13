@@ -24,16 +24,16 @@ public class UIController : MonoBehaviour
 
     public void SelectMenu(string Buildables)
     {
+        foreach (Transform OldBuildable in GH.BuildMenu.transform.Find("Buildables"))
+        {
+            Destroy(OldBuildable.gameObject);
+        }
+
         if (Buildables == "Track") { BuildableList = GH.Tracks; }
         else if (Buildables == "Building") { BuildableList = GH.Buildings; }
         else { Debug.LogError("Incorrect menu requested"); }
 
         int ID = 0;
-
-        foreach (Transform OldBuildable in GH.BuildMenu.transform.Find("Buildables"))
-        {
-            Destroy(OldBuildable.gameObject);
-        }
 
         foreach (Buildable Buildable in BuildableList)
         {
@@ -48,7 +48,8 @@ public class UIController : MonoBehaviour
     public void SelectBuildable()
     {
         int Selected = int.Parse(EventSystem.current.currentSelectedGameObject.transform.parent.name);
-        print(BuildableList);
-        print(Selected + ": " + BuildableList[Selected]);
+        print(BuildableList.Count);
+        //print(BuildableList);
+        //print(Selected + ": " + BuildableList[Selected]);
     }
 }
