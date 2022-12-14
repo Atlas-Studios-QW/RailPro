@@ -13,7 +13,13 @@ public class TileController : MonoBehaviour
     public void UpdateTile(Buildable NewBuildable)
     {
         CurrentBuildable = NewBuildable;
-        Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
-        Instantiate(NewBuildable.model, BuiltObjectParent.transform);
+        if (BuiltObjectParent.transform.childCount > 0)
+        {
+            Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
+        }
+        if (NewBuildable.model != null)
+        {
+            Instantiate(NewBuildable.model, BuiltObjectParent.transform);
+        }
     }
 }

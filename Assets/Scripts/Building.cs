@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Building : MonoBehaviour
 {
@@ -22,15 +23,17 @@ public class Building : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && InBuildMode)
         {
-            if (InBuildMode)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Buildable SelectedBuildable = GetComponent<UIController>().SelectedBuildable;
+
+                if (SelectedBuildable != null)
                 {
-                    print(hit.transform.gameObject);
+                    hit.transform.gameObject.GetComponent<TileController>().UpdateTile(SelectedBuildable);
                 }
             }
         }
