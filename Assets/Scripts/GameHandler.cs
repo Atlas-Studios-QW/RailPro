@@ -6,7 +6,7 @@ public class GameHandler : MonoBehaviour
 {
     // Temporary custom savegame instead of loading one from a file
     [Header("Temporary Savegame")]
-    public Savegame SaveData = new Savegame(new Vector2(100, 100));
+    public Savegame TempSaveData = new Savegame(new Vector2(100, 100), 100000);
 
     //All variables that do not change during playtime will be set in the GameHandler to prevent repetition and to increase ease of change
     [Header("Objects")]
@@ -38,7 +38,7 @@ public class GameHandler : MonoBehaviour
     private void Start()
     {
         // Savegame loading temporarily disabled until savegame system is completed
-        Savegame = SaveData;
+        Savegame = TempSaveData;
 
         //string RequestedSavegame = PlayerPrefs.GetString("LoadedSavegame");
         //Savegame Savegame = GetComponent<SavegameSystem>().GetSavegame(RequestedSavegame);

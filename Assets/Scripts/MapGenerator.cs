@@ -16,6 +16,9 @@ public class MapGenerator : MonoBehaviour
         // ID for each tile to keep track of them when saving
         int CurrentID = 0;
 
+        //Check if savegame is new or not
+        bool ExistingSave = LoadedSavegame.tiles.Count > 0;
+        
         // Spawn tiles all tiles and borders (1 extra time to make the final borders)
         for (int x = 0; x < LoadedSavegame.mapSize.x + 1; x++)
         {
@@ -34,9 +37,10 @@ public class MapGenerator : MonoBehaviour
                     GameObject NewTile = Instantiate(GH.BaseTile, new Vector3(x,0,y), new Quaternion(0,0,0,0), GH.MapTiles.transform);
                     NewTile.name = CurrentID.ToString();
 
-                    if (LoadedSavegame.tiles.Count > 0)
+                    if (ExistingSave)
                     {
-                        //Existing savegame, use data and set it to the tile
+                        //Existing savegame, load data from savegame data
+                        NewTile.GetComponent<TileController>().UpdateTile(GH.Savegame.tiles[CurrentID].builtObject);
                     }
                     else
                     {

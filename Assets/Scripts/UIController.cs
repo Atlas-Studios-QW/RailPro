@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
         //When a menu is selected, it takes all the neccasary data from the game handler.
         if (Buildables == "Track") { BuildableList = new List<Buildable>(GH.Tracks); }
         else if (Buildables == "Building") { BuildableList = new List<Buildable>(GH.Buildings); }
-        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Track,null,null,null,0) }; }
+        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Delete,null,null,null,0) }; }
         else { Debug.LogError("Incorrect menu requested"); }
 
         int ID = 0;

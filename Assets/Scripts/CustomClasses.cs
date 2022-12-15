@@ -13,22 +13,26 @@ public class Savegame
 {
     public Vector2 mapSize;
     public List<Tile> tiles;
+    public int playerBalance;
 
     public Savegame() {
         mapSize = new Vector2(10,10);
         tiles = new List<Tile>();
+        playerBalance = 100000;
     }
 
-    public Savegame(Vector2 MapSize)
+    public Savegame(Vector2 MapSize, int PlayerBalance)
     {
         mapSize = MapSize;
         tiles = new List<Tile>();
+        playerBalance = PlayerBalance;
     }
 }
 
 [System.Serializable]
 public enum BuildableType
 {
+    Delete,
     Track,
     Building
 }

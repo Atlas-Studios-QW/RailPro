@@ -8,24 +8,52 @@ public class TileController : MonoBehaviour
     public GameObject BuiltObjectParent;
     [HideInInspector]
     public Buildable CurrentBuildable;
+    private Buildable OldBuildable;
+    private bool ConfirmedBuild = false;
 
     // Whenever something is built, this function can be called to add the object to it
     public void UpdateTile(Buildable NewBuildable)
     {
+        OldBuildable = CurrentBuildable;
         CurrentBuildable = NewBuildable;
         if (BuiltObjectParent.transform.childCount > 0)
         {
             Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
         }
 
-        if (NewBuildable.model != null || NewBuildable.name == "Delete")
+        if (NewBuildable.model != null || NewBuildable.type == BuildableType.Delete)
         {
-            // Try catch because i told it to ignore it when it's null, but apparently it's still null sometimes and i dont want my console full of errors
-            try { Instantiate(NewBuildable.model, BuiltObjectParent.transform); } catch { }
+            GameObject NewModel = Instantiate(NewBuildable.model, BuiltObjectParent.transform);
+            print("Inactivated");
+            NewModel.SetActive(false);
+            NewModel.transform.Find("CollisionCheck").gameObject.SetActive(true);
+            ConfirmedBuild = false;
         }
         else
         {
             Debug.LogError("No model given for chosen object");
+        }
+    }
+
+    //The CollisionCheck object on all buildables will trigger this if objects are overlapping
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Collision");
+        if (!ConfirmedBuild)
+        {
+            Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
+            CurrentBuildable = OldBuildable;
+        }
+    }
+
+    //Re-enables model after collision check
+    private void FixedUpdate()
+    {
+        if (!ConfirmedBuild)
+        {
+            ConfirmedBuild = true;
+            //Try catch because model does not exist on an empty tile
+            try { BuiltObjectParent.transform.GetChild(0).gameObject.SetActive(true); } catch { }
         }
     }
 }

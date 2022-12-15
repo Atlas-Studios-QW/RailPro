@@ -35,7 +35,10 @@ public class Building : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit) && !EventSystem.current.IsPointerOverGameObject())
             {
                 //Check if player is hitting a different tile than before
-                if (int.Parse(hit.transform.gameObject.name) != PreviousTile)
+                //Try catch to ignore anti build hitboxes
+                int HitTileID = -1;
+                try { HitTileID = int.Parse(hit.transform.gameObject.name); } catch { }
+                if (HitTileID != PreviousTile && HitTileID != -1)
                 {
                     Buildable SelectedBuildable = GetComponent<UIController>().SelectedBuildable;
 
@@ -43,8 +46,13 @@ public class Building : MonoBehaviour
                     {
                         TileController TC = hit.transform.gameObject.GetComponent<TileController>();
 
+                        if (SelectedBuildable.type == BuildableType.Delete)
+                        {
+                            SelectedBuildable.price = -TC.CurrentBuildable.price / 2;
+                        }
+
                         //If the current buildable is a building, warn the player before removing
-                        if (TC.CurrentBuildable.type == BuildableType.Building)
+                        if (TC.CurrentBuildable.type == BuildableType.Building && SelectedBuildable.type == BuildableType.Delete)
                         {
                             WarningBuildable = SelectedBuildable;
                             WarningTile = TC;
@@ -52,10 +60,16 @@ public class Building : MonoBehaviour
                         }
                         else
                         {
-                            TC.UpdateTile(SelectedBuildable);
+                            //Check if player has enough money, and if so, remove the cost
+                            if (GH.Savegame.playerBalance >= SelectedBuildable.price)
+                            {
+                                GH.Savegame.playerBalance -= SelectedBuildable.price;
+                                GH.Savegame.tiles[HitTileID].builtObject = SelectedBuildable;
+                                TC.UpdateTile(SelectedBuildable);
+                            }
                         }
                     }
-                    PreviousTile = int.Parse(hit.transform.gameObject.name);
+                    PreviousTile = HitTileID;
                 }
             }
         }
@@ -65,8 +79,10 @@ public class Building : MonoBehaviour
     public void Warnbox(bool UserResponse)
     {
         GH.WarningBox.SetActive(false);
-        if (UserResponse)
+        if (UserResponse && GH.Savegame.playerBalance >= WarningBuildable.price)
         {
+            GH.Savegame.playerBalance -= WarningBuildable.price;
+            GH.Savegame.tiles[int.Parse(WarningTile.gameObject.name)].builtObject = WarningBuildable;
             WarningTile.UpdateTile(WarningBuildable);
         }
         WarningBuildable = null;
