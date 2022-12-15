@@ -17,6 +17,7 @@ public class GameHandler : MonoBehaviour
     [Header("UIObjects")]
     public GameObject UICanvas;
     public GameObject BuildMenu;
+    public GameObject WarningBox;
 
     [Header("Prefabs")]
     public GameObject BaseTile;

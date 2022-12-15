@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
 
     private bool BuildMenuOpen;
 
+    //Opens the build options
     public void BuildOptions()
     {
         if (BuildMenuOpen) { GH.BuildMenu.SetActive(false); }
@@ -23,20 +24,24 @@ public class UIController : MonoBehaviour
         BuildMenuOpen = !BuildMenuOpen;
     }
 
+    //Switches between the different menus
     public void SelectMenu(string Buildables)
     {
+        //When a menu is selected, it takes all the neccasary data from the game handler.
         if (Buildables == "Track") { BuildableList = new List<Buildable>(GH.Tracks); }
         else if (Buildables == "Building") { BuildableList = new List<Buildable>(GH.Buildings); }
-        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Building,null,null,null,0) }; }
+        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Track,null,null,null,0) }; }
         else { Debug.LogError("Incorrect menu requested"); }
 
         int ID = 0;
 
+        //Removes all buildables from the menu
         foreach (Transform OldBuildable in GH.BuildMenu.transform.Find("Buildables"))
         {
             Destroy(OldBuildable.gameObject);
         }
 
+        //Places new buildables in the menu
         foreach (Buildable Buildable in BuildableList)
         {
             GameObject NewIcon = Instantiate(GH.BuildableIconBase, GH.BuildMenu.transform.Find("Buildables"));
@@ -49,6 +54,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    //When a buildable is pressed, save which one was last chosen
     public void SelectBuildable()
     {
         int Selected = int.Parse(EventSystem.current.currentSelectedGameObject.transform.parent.name);

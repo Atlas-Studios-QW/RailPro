@@ -14,7 +14,15 @@ public class SavegameSystem : MonoBehaviour
     public Savegame GetSavegame(string SavegameName)
     {
         string SavegamePath = Application.persistentDataPath + $"Savegames/{SavegameName}.txt";
-        string ReadJSON = File.ReadAllText(SavegamePath);
-        return JsonUtility.FromJson<Savegame>(ReadJSON);
+        if (File.Exists(SavegamePath))
+        {
+            string ReadJSON = File.ReadAllText(SavegamePath);
+            return JsonUtility.FromJson<Savegame>(ReadJSON);
+        }
+        else
+        {
+            Debug.LogError("");
+            return new Savegame();
+        }
     }
 }

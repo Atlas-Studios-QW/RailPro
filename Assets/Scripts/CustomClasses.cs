@@ -14,6 +14,11 @@ public class Savegame
     public Vector2 mapSize;
     public List<Tile> tiles;
 
+    public Savegame() {
+        mapSize = new Vector2(10,10);
+        tiles = new List<Tile>();
+    }
+
     public Savegame(Vector2 MapSize)
     {
         mapSize = MapSize;

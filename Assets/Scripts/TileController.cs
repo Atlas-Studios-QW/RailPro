@@ -17,9 +17,15 @@ public class TileController : MonoBehaviour
         {
             Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
         }
-        if (NewBuildable.model != null)
+
+        if (NewBuildable.model != null || NewBuildable.name == "Delete")
         {
-            Instantiate(NewBuildable.model, BuiltObjectParent.transform);
+            // Try catch because i told it to ignore it when it's null, but apparently it's still null sometimes and i dont want my console full of errors
+            try { Instantiate(NewBuildable.model, BuiltObjectParent.transform); } catch { }
+        }
+        else
+        {
+            Debug.LogError("No model given for chosen object");
         }
     }
 }
