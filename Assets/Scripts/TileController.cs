@@ -47,12 +47,12 @@ public class TileController : MonoBehaviour
     //The CollisionCheck object on all buildables will trigger this if objects are overlapping
     private void OnTriggerEnter(Collider other)
     {
-        print("Collision");
         if (!ConfirmedBuild)
         {
             Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
             CurrentBuildable = OldBuildable;
             ConfirmedBuild = true;
+            GH.GetComponent<UIController>().CursorWarning("Cannot build here!");
         }
     }
 
@@ -65,7 +65,6 @@ public class TileController : MonoBehaviour
             ConfirmedBuild = true;
             GH.Savegame.tiles[int.Parse(gameObject.name)].builtObject = NewBuildabe;
             GH.Savegame.playerBalance -= NewBuildabe.price;
-            print("Confirmed");
         }
     }
 }

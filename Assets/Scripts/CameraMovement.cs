@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         PlayerPos = GH.Player.transform.position;
-        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * CameraSpeed * (PlayerPos.y / 100), Input.GetAxis("ScrollWheel") * -1000 * CameraSpeed, Input.GetAxis("Vertical") * CameraSpeed * (PlayerPos.y / 100));
+        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * CameraSpeed * (PlayerPos.y / 100), Input.GetAxis("ScrollWheel") * -CameraSpeed, Input.GetAxis("Vertical") * CameraSpeed * (PlayerPos.y / 100));
 
         Vector2 MapSize = Savegame.mapSize;
 

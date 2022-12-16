@@ -20,14 +20,22 @@ public class UIController : MonoBehaviour
     //Change the cursor to show what is selected
     private void Update()
     {
+        GH.MoneyCounter.GetComponent<TextMeshProUGUI>().text = "$" + GH.Savegame.playerBalance;
+        Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y);
+        GH.CursorWarning.transform.position = MousePos;
         if (BuildMenuOpen)
         {
-            Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y);
             MousePos = Camera.main.ScreenToWorldPoint(MousePos);
             MousePos = new Vector3(MousePos.x, 1.0f, MousePos.z);
             if (MouseModel != null)
             {
                 MouseModel.transform.position = MousePos;
+            }
+
+            //Check if user pressed rotate button
+            if (Input.GetButtonDown("Rotate"))
+            {
+                RotateBuildable(false);
             }
         }
     }
@@ -73,9 +81,42 @@ public class UIController : MonoBehaviour
     //When a buildable is pressed, save which one was last chosen and spawn a model for the cursor
     public void SelectBuildable()
     {
+        RotateBuildable(true);
         int Selected = int.Parse(EventSystem.current.currentSelectedGameObject.transform.parent.name);
-        SelectedBuildable = BuildableList[Selected];
+        SelectedBuildable = new Buildable(BuildableList[Selected]);
         try { Destroy(MouseModel); } catch { }
         try { MouseModel = Instantiate(SelectedBuildable.model); } catch { }
+    }
+
+    public void RotateBuildable(bool Reset)
+    {
+        if (Reset && SelectedBuildable.model != null)
+        {
+            SelectedBuildable.model.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (SelectedBuildable.model != null)
+        {
+            SelectedBuildable.model.transform.rotation = Quaternion.Euler(0, SelectedBuildable.model.transform.rotation.eulerAngles.y + 90, 0);
+            try { Destroy(MouseModel); } catch { }
+            try { MouseModel = Instantiate(SelectedBuildable.model); } catch { }
+        }
+    }
+
+    private Coroutine CursorWarningFunc = null;
+    public void CursorWarning(string Message)
+    {
+        if (CursorWarningFunc != null)
+        {
+            StopCoroutine(CursorWarningFunc);
+        }
+        CursorWarningFunc = StartCoroutine(CursorWarningExec(Message));
+    }
+
+    private IEnumerator CursorWarningExec(string Message)
+    {
+        GH.CursorWarning.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = Message;
+        GH.CursorWarning.SetActive(true);
+        yield return new WaitForSeconds(2);
+        GH.CursorWarning.SetActive(false);
     }
 }

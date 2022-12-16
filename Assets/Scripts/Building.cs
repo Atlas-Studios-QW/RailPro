@@ -28,6 +28,11 @@ public class Building : MonoBehaviour
     //Checks if and which tile was pressed
     private void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            PreviousTile = -2;
+        }
+
         if (Input.GetMouseButton(0) && InBuildMode)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -71,10 +76,14 @@ public class Building : MonoBehaviour
                             }
                             else
                             {
-                                //Check if player has enough money, and if so, remove the cost
+                                //Check if player has enough money, and if so, remove the cost, else warn the player
                                 if (GH.Savegame.playerBalance >= FinalBuildable.price)
                                 {
                                     TC.UpdateTile(FinalBuildable);
+                                }
+                                else
+                                {
+                                    GetComponent<UIController>().CursorWarning("Not enough money!");
                                 }
                             }
                         }

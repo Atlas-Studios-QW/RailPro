@@ -18,6 +18,8 @@ public class GameHandler : MonoBehaviour
     public GameObject UICanvas;
     public GameObject BuildMenu;
     public GameObject WarningBox;
+    public GameObject CursorWarning;
+    public GameObject MoneyCounter;
 
     [Header("Prefabs")]
     public GameObject BaseTile;
