@@ -56,6 +56,16 @@ public class Buildable
         description = Description;
         price = Price;
     }
+
+    public Buildable(Buildable Buildable)
+    {
+        name = Buildable.name;
+        type = Buildable.type;
+        model = Buildable.model;
+        icon = Buildable.icon;
+        description = Buildable.description;
+        price = Buildable.price;
+    }
 }
 
 [System.Serializable]

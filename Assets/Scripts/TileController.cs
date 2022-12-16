@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
+    private GameHandler GH;
+
     [Header("Built object parent")]
     public GameObject BuiltObjectParent;
     [HideInInspector]
@@ -11,7 +13,12 @@ public class TileController : MonoBehaviour
     private Buildable OldBuildable;
     private bool ConfirmedBuild = false;
 
-    // Whenever something is built, this function can be called to add the object to it
+    private void Start()
+    {
+        GH = GameObject.Find("ScriptHolder").GetComponent<GameHandler>();
+    }
+
+    // Whenever something is built, add the object to the tile
     public void UpdateTile(Buildable NewBuildable)
     {
         OldBuildable = CurrentBuildable;
@@ -21,12 +28,14 @@ public class TileController : MonoBehaviour
             Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
         }
 
-        if (NewBuildable.model != null || NewBuildable.type == BuildableType.Delete)
+        if (NewBuildable.model != null)
         {
-            GameObject NewModel = Instantiate(NewBuildable.model, BuiltObjectParent.transform);
-            print("Inactivated");
-            NewModel.SetActive(false);
-            NewModel.transform.Find("CollisionCheck").gameObject.SetActive(true);
+            Instantiate(NewBuildable.model, BuiltObjectParent.transform);
+            ConfirmedBuild = false;
+            StartCoroutine(ConfirmBuild(NewBuildable));
+        }
+        else if (NewBuildable.type == BuildableType.Delete)
+        {
             ConfirmedBuild = false;
         }
         else
@@ -43,17 +52,20 @@ public class TileController : MonoBehaviour
         {
             Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
             CurrentBuildable = OldBuildable;
+            ConfirmedBuild = true;
         }
     }
 
-    //Re-enables model after collision check
-    private void FixedUpdate()
+    //Confirms build when no collision is detected
+    private IEnumerator ConfirmBuild(Buildable NewBuildabe)
     {
+        yield return new WaitForSeconds(0.1f);
         if (!ConfirmedBuild)
         {
             ConfirmedBuild = true;
-            //Try catch because model does not exist on an empty tile
-            try { BuiltObjectParent.transform.GetChild(0).gameObject.SetActive(true); } catch { }
+            GH.Savegame.tiles[int.Parse(gameObject.name)].builtObject = NewBuildabe;
+            GH.Savegame.playerBalance -= NewBuildabe.price;
+            print("Confirmed");
         }
     }
 }

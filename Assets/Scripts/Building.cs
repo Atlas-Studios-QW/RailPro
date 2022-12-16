@@ -40,34 +40,45 @@ public class Building : MonoBehaviour
                 try { HitTileID = int.Parse(hit.transform.gameObject.name); } catch { }
                 if (HitTileID != PreviousTile && HitTileID != -1)
                 {
+                    //Check if the player selected a buildable
                     Buildable SelectedBuildable = GetComponent<UIController>().SelectedBuildable;
 
                     if (SelectedBuildable != null)
                     {
                         TileController TC = hit.transform.gameObject.GetComponent<TileController>();
 
-                        if (SelectedBuildable.type == BuildableType.Delete)
-                        {
-                            SelectedBuildable.price = -TC.CurrentBuildable.price / 2;
-                        }
+                        //New buildable so it can be changed without causing the original to be changed
+                        Buildable FinalBuildable = new Buildable(SelectedBuildable);
 
-                        //If the current buildable is a building, warn the player before removing
-                        if (TC.CurrentBuildable.type == BuildableType.Building && SelectedBuildable.type == BuildableType.Delete)
+                        //Check if the selected buildable is not already there
+                        if (FinalBuildable != TC.CurrentBuildable)
                         {
-                            WarningBuildable = SelectedBuildable;
-                            WarningTile = TC;
-                            GH.WarningBox.SetActive(true);
-                        }
-                        else
-                        {
-                            //Check if player has enough money, and if so, remove the cost
-                            if (GH.Savegame.playerBalance >= SelectedBuildable.price)
+                            if (FinalBuildable.type == BuildableType.Delete)
                             {
-                                GH.Savegame.playerBalance -= SelectedBuildable.price;
-                                GH.Savegame.tiles[HitTileID].builtObject = SelectedBuildable;
-                                TC.UpdateTile(SelectedBuildable);
+                                FinalBuildable.price = -TC.CurrentBuildable.price / 2;
+                            }
+                            else if (FinalBuildable.type == BuildableType.Track && TC.CurrentBuildable.type == BuildableType.Track)
+                            {
+                                FinalBuildable.price = FinalBuildable.price / 2;
+                            }
+
+                            //If the current buildable is a building, warn the player before removing
+                            if (TC.CurrentBuildable.type == BuildableType.Building && FinalBuildable.type == BuildableType.Delete)
+                            {
+                                WarningBuildable = SelectedBuildable;
+                                WarningTile = TC;
+                                GH.WarningBox.SetActive(true);
+                            }
+                            else
+                            {
+                                //Check if player has enough money, and if so, remove the cost
+                                if (GH.Savegame.playerBalance >= FinalBuildable.price)
+                                {
+                                    TC.UpdateTile(FinalBuildable);
+                                }
                             }
                         }
+
                     }
                     PreviousTile = HitTileID;
                 }

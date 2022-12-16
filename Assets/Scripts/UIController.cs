@@ -15,11 +15,27 @@ public class UIController : MonoBehaviour
     private List<Buildable> BuildableList = new List<Buildable>();
 
     private bool BuildMenuOpen;
+    private GameObject MouseModel;
+
+    //Change the cursor to show what is selected
+    private void Update()
+    {
+        if (BuildMenuOpen)
+        {
+            Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y);
+            MousePos = Camera.main.ScreenToWorldPoint(MousePos);
+            MousePos = new Vector3(MousePos.x, 1.0f, MousePos.z);
+            if (MouseModel != null)
+            {
+                MouseModel.transform.position = MousePos;
+            }
+        }
+    }
 
     //Opens the build options
     public void BuildOptions()
     {
-        if (BuildMenuOpen) { GH.BuildMenu.SetActive(false); }
+        if (BuildMenuOpen) { GH.BuildMenu.SetActive(false); Destroy(MouseModel); }
         else { GH.BuildMenu.SetActive(true); }
         BuildMenuOpen = !BuildMenuOpen;
     }
@@ -54,10 +70,12 @@ public class UIController : MonoBehaviour
         }
     }
 
-    //When a buildable is pressed, save which one was last chosen
+    //When a buildable is pressed, save which one was last chosen and spawn a model for the cursor
     public void SelectBuildable()
     {
         int Selected = int.Parse(EventSystem.current.currentSelectedGameObject.transform.parent.name);
         SelectedBuildable = BuildableList[Selected];
+        try { Destroy(MouseModel); } catch { }
+        try { MouseModel = Instantiate(SelectedBuildable.model); } catch { }
     }
 }
