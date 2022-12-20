@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -14,9 +16,12 @@ public class TrainController : MonoBehaviour
     public GameObject Reverse;
 
     public float Speed = 1;
-    
+
+    public BezierCurve NextSpline;
+    List<Vector3> CurvePoints = new List<Vector3>();
+
     public bool OnSpline = false;
-    private float SplineRes;
+    public float SplineRes;
 
     private void Start()
     {
@@ -30,26 +35,32 @@ public class TrainController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
         {
-            BezierCurve NextSpline = hit.transform.GetComponent<BezierCurve>();
+            BezierCurve FoundSpline = hit.transform.GetComponent<BezierCurve>();
 
-            if (NextSpline != null && !OnSpline)
+            if (FoundSpline != NextSpline)
             {
-                OnSpline = true;
-                StartCoroutine(FollowSpline(NextSpline));
+                print("Spline Found!");
+                NextSpline = FoundSpline;
+
+                for (float i = 0f; i < 1; i += SplineRes)
+                {
+                    CurvePoints.Add(NextSpline.GetPointAt(i));
+                }
+                print("Calculated Points");
+
             }
+
+        }
+
+        if (CurvePoints.Count > 0 && !OnSpline)
+        {
+            OnSpline = true;
+            StartCoroutine(FollowSpline(CurvePoints));
         }
     }
 
-    private IEnumerator FollowSpline(BezierCurve Spline)
+    private IEnumerator FollowSpline(List<Vector3> Points)
     {
-        List<Vector3> Points = new List<Vector3>();
-        for (float i = 0f; i < 1; i += SplineRes)
-        {
-            Points.Add(Spline.GetPointAt(i));
-            print(SplineRes);
-            yield return null;
-        }
-
         foreach (Vector3 Point in Points)
         {
             while (transform.position != Point)
@@ -60,6 +71,7 @@ public class TrainController : MonoBehaviour
             yield return null;
         }
 
+        OnSpline = false;
         yield return null;
     }
 }
