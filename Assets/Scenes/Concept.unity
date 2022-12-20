@@ -1971,6 +1971,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489fded7223274b42bc28c81a3e69868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &890160222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+    type: 3}
+  m_PrefabInstance: {fileID: 259633125261803457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6182a9f589a55ec409ea2bed4c224547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896606467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,6 +3808,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScriptHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846034, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: GH
+      value: 
+      objectReference: {fileID: 890160222}
     - target: {fileID: 259633125043846035, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: m_RootOrder
@@ -3851,11 +3868,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846036, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: GH
+      value: 
+      objectReference: {fileID: 890160222}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 52739956}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: BaseTile
+      value: 
+      objectReference: {fileID: 7065376605882253457, guid: 3482226f31fcc764094ff042136f1c7a,
+        type: 3}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: MapTiles
@@ -3878,6 +3906,12 @@ PrefabInstance:
       objectReference: {fileID: 1418343636}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: TileBorder
+      value: 
+      objectReference: {fileID: 8436848889643586178, guid: 616f1a704c026b64e843603a696c126a,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: WarningBox
       value: 
       objectReference: {fileID: 1944601143}
@@ -3891,6 +3925,12 @@ PrefabInstance:
       propertyPath: CursorWarning
       value: 
       objectReference: {fileID: 743973379}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: BuildableIconBase
+      value: 
+      objectReference: {fileID: 7326955912213138425, guid: 697a33664a308ad408682fd8d8879f19,
+        type: 3}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.size
@@ -4077,6 +4117,16 @@ PrefabInstance:
       propertyPath: Buildings.Array.data[0].description
       value: Here you can buy trains
       objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846040, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: GH
+      value: 
+      objectReference: {fileID: 890160222}
+    - target: {fileID: 259633125043846041, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: GH
+      value: 
+      objectReference: {fileID: 890160222}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83, type: 3}
