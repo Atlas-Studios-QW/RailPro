@@ -28,6 +28,7 @@ public class GameHandler : MonoBehaviour
 
     [Header("Settings")]
     public float CameraSpeed = 10;
+    public int SplineResolution = 10;
 
     [Header("Buildables")]
     public List<Buildable> Tracks;

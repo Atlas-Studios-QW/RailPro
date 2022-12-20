@@ -4008,6 +4008,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Tracks.Array.data[0].model
+      value: 
+      objectReference: {fileID: 3418496914229604897, guid: fc00985a611dcc749a20f8a755a9b0ad,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Tracks.Array.data[0].price
       value: 100
       objectReference: {fileID: 0}
@@ -4086,6 +4092,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Buildings.Array.data[0].price
       value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[0].description
+      value: Basic Track
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
