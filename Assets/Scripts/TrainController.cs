@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class TrainController : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider FrontCollider)
+    //Ray origin points
+    [Header("Spline Detectors")]
+    public GameObject Forward;
+    public GameObject Reverse;
+
+    public float Speed = 1;
+
+    //Draw ray that will pick up colliders on track piece, then get the bezier curve that is attached
+    private void Update()
     {
-        print(FrontCollider.gameObject.name);
+
     }
 }

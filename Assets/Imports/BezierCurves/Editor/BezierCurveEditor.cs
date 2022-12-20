@@ -194,7 +194,7 @@ public class BezierCurveEditor : Editor
 		Handles.Label(point.position + new Vector3(0, HandleUtility.GetHandleSize(point.position) * 0.4f, 0), point.gameObject.name);
 		
 		Handles.color = Color.green;
-		var fmh_197_64_638068246209617689 = point.transform.rotation; Vector3 newPosition = Handles.FreeMoveHandle(point.position, HandleUtility.GetHandleSize(point.position)*0.1f, Vector3.zero, Handles.RectangleHandleCap);
+		var fmh_197_64_638071371032437733 = point.transform.rotation; Vector3 newPosition = Handles.FreeMoveHandle(point.position, HandleUtility.GetHandleSize(point.position)*0.1f, Vector3.zero, Handles.RectangleHandleCap);
 		
 		if(newPosition != point.position)
 		{
@@ -205,7 +205,7 @@ public class BezierCurveEditor : Editor
 		if(point.handleStyle != BezierPoint.HandleStyle.None)
 		{
 			Handles.color = Color.cyan;
-			var fmh_208_69_638068246209644507 = point.transform.rotation; Vector3 newGlobal1 = Handles.FreeMoveHandle(point.globalHandle1, HandleUtility.GetHandleSize(point.globalHandle1)*0.075f, Vector3.zero, Handles.CircleHandleCap);
+			var fmh_208_69_638071371032465019 = point.transform.rotation; Vector3 newGlobal1 = Handles.FreeMoveHandle(point.globalHandle1, HandleUtility.GetHandleSize(point.globalHandle1)*0.075f, Vector3.zero, Handles.CircleHandleCap);
 			if(point.globalHandle1 != newGlobal1)
 			{
 				Undo.RegisterUndo(point, "Move Handle");
@@ -213,7 +213,7 @@ public class BezierCurveEditor : Editor
 				if(point.handleStyle == BezierPoint.HandleStyle.Connected) point.globalHandle2 = -(newGlobal1 - point.position) + point.position;
 			}
 			
-			var fmh_216_69_638068246209648255 = point.transform.rotation; Vector3 newGlobal2 = Handles.FreeMoveHandle(point.globalHandle2, HandleUtility.GetHandleSize(point.globalHandle2)*0.075f, Vector3.zero, Handles.CircleHandleCap);
+			var fmh_216_69_638071371032469718 = point.transform.rotation; Vector3 newGlobal2 = Handles.FreeMoveHandle(point.globalHandle2, HandleUtility.GetHandleSize(point.globalHandle2)*0.075f, Vector3.zero, Handles.CircleHandleCap);
 			if(point.globalHandle2 != newGlobal2)
 			{
 				Undo.RegisterUndo(point, "Move Handle");
