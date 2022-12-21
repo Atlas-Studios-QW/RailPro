@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
     {
         GH.MoneyCounter.GetComponent<TextMeshProUGUI>().text = "$" + GH.Savegame.playerBalance;
         Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y);
-        GH.CursorWarning.transform.position = MousePos;
+        GH.CursorWarning.transform.position = MousePos + new Vector3(10,-10,0);
         if (BuildMenuOpen)
         {
             MousePos = Camera.main.ScreenToWorldPoint(MousePos);

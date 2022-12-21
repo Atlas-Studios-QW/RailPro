@@ -36,7 +36,7 @@ public class Building : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit) && !EventSystem.current.IsPointerOverGameObject())
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("WorldTiles")) && !EventSystem.current.IsPointerOverGameObject())
             {
                 //Check if player is hitting a different tile than before
                 //Try catch to ignore anti build hitboxes

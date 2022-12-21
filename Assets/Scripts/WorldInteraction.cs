@@ -10,16 +10,13 @@ public class WorldInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && !GH.InBuildMode)
+        if (Input.GetMouseButtonDown(0) && !GH.InBuildMode)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit) && !EventSystem.current.IsPointerOverGameObject())
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("WorldInteractors")) && !EventSystem.current.IsPointerOverGameObject())
             {
-                if (hit.transform.tag == "BuildingInteractor")
-                {
-
-                }   
+                
             }
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7961563617959616011}
   - component: {fileID: 1262449037225096705}
   - component: {fileID: 7895064103979410694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3506941939883245581}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BuiltObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8533067068680549755}
   - component: {fileID: 5144636726291003730}
   - component: {fileID: 7869022282235569449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

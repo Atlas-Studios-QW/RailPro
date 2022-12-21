@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 259633125043846037}
   - component: {fileID: 259633125043846041}
   - component: {fileID: 259633125043846040}
+  - component: {fileID: 5378319383518095618}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -50,14 +51,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6182a9f589a55ec409ea2bed4c224547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveData:
+  TempSaveData:
     mapSize: {x: 100, y: 100}
     tiles: []
+    playerBalance: 100000
   Player: {fileID: 0}
   MapTiles: {fileID: 0}
   MapBorders: {fileID: 0}
   UICanvas: {fileID: 0}
   BuildMenu: {fileID: 0}
+  WarningBox: {fileID: 0}
+  CursorWarning: {fileID: 0}
+  MoneyCounter: {fileID: 0}
   BaseTile: {fileID: 7065376605882253457, guid: 3482226f31fcc764094ff042136f1c7a,
     type: 3}
   TileBorder: {fileID: 8436848889643586178, guid: 616f1a704c026b64e843603a696c126a,
@@ -65,6 +70,7 @@ MonoBehaviour:
   BuildableIconBase: {fileID: 7326955912213138425, guid: 697a33664a308ad408682fd8d8879f19,
     type: 3}
   CameraSpeed: 20
+  SplineResolution: 10
   Tracks:
   - name: Horizontal
     type: 0
@@ -76,6 +82,8 @@ MonoBehaviour:
   Savegame:
     mapSize: {x: 0, y: 0}
     tiles: []
+    playerBalance: 100000
+  InBuildMode: 0
 --- !u!114 &259633125043846039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,4 +160,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GH: {fileID: 259633125043846038}
-  SelectedBuildable: {fileID: 0}
+  SelectedBuildable:
+    name: 
+    type: 0
+    model: {fileID: 0}
+    icon: {fileID: 0}
+    description: 
+    price: 0
+--- !u!114 &5378319383518095618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259633125043846032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f3d4d2a7a31cf4ca376f6183fb715b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GH: {fileID: 259633125043846038}
