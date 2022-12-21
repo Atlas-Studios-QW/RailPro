@@ -80,3 +80,15 @@ public class Tile
         builtObject = BuiltObject;
     }
 }
+
+[System.Serializable]
+public class Locomotive
+{
+
+}
+
+[System.Serializable]
+public class TrainCar
+{
+
+}

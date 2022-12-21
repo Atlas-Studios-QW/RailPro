@@ -34,6 +34,9 @@ public class GameHandler : MonoBehaviour
     public List<Buildable> Tracks;
     public List<Buildable> Buildings;
 
+    [Header("Trains")]
+    public List<Locomotive> Locomotives = new List<Locomotive>();
+    public List<TrainCar> TrainCars = new List<TrainCar>();
 
     [Header("Loaded Savegame")]
     public Savegame Savegame;
