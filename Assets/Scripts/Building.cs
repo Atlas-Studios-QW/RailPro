@@ -8,7 +8,6 @@ public class Building : MonoBehaviour
     [Header("Connect GameHandler")]
     public GameHandler GH;
 
-    private bool InBuildMode = false;
     private Buildable WarningBuildable;
     private TileController WarningTile;
     private int PreviousTile;
@@ -16,13 +15,13 @@ public class Building : MonoBehaviour
     //Open/Close build mode, this will show and hide the borders on the map
     public void SwitchBuildMode()
     {
-        if (InBuildMode) {
+        if (GH.InBuildMode) {
             GH.MapBorders.SetActive(false);
         }
         else {
             GH.MapBorders.SetActive(true);
         }
-        InBuildMode = !InBuildMode;
+        GH.InBuildMode = !GH.InBuildMode;
     }
 
     //Checks if and which tile was pressed
@@ -33,7 +32,7 @@ public class Building : MonoBehaviour
             PreviousTile = -2;
         }
 
-        if (Input.GetMouseButton(0) && InBuildMode)
+        if (Input.GetMouseButton(0) && GH.InBuildMode)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

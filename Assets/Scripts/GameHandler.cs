@@ -34,8 +34,12 @@ public class GameHandler : MonoBehaviour
     public List<Buildable> Tracks;
     public List<Buildable> Buildings;
 
+
     [Header("Loaded Savegame")]
     public Savegame Savegame;
+
+    [HideInInspector]
+    public bool InBuildMode = false;
 
     // Run everything neccesary to start the game
     private void Start()

@@ -31,15 +31,16 @@ public class TrainController : MonoBehaviour
         SplineRes = GH.SplineResolution;
     }
 
-    //Draw ray that will pick up colliders on track piece, then get the bezier curve that is attached
     private void Update()
     {
+        //Follow the next spline if it exists and it is not currently following one already
         if (CurvePoints.Count > 0 && !OnSpline)
         {
             OnSpline = true;
             StartCoroutine(FollowSpline(new List<Vector3>(CurvePoints)));
         }
 
+        //Draw ray that will pick up colliders on track piece, then get the spline that is attached
         RaycastHit hit;
         if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
         {
@@ -50,6 +51,7 @@ public class TrainController : MonoBehaviour
                 print("Spline Found!");
                 NextSpline = FoundSpline;
 
+                //Get all points in curve based on the set resolution
                 CurvePoints.Clear();
                 for (float i = 0f; i < 1; i += 1 / SplineRes)
                 {
@@ -60,15 +62,18 @@ public class TrainController : MonoBehaviour
         }
     }
 
+    //When called, will follow the by the selected points
     private IEnumerator FollowSpline(List<Vector3> Points)
     {
         float FinalRotation = 0;
         bool First = true;
 
+        //Get the final point on the spline and check in which direction it is
         Vector3 FinalPoint = Points[Points.Count - 1];
-        int FinalDirection = DirectionCheck(FinalPoint);
+        int Direction = DirectionCheck(FinalPoint);
         
-        if (FinalDirection == 0)
+        //If the direction is 0, meaning straight track, skip all the points in between the first and last and go straight towards the last (much more efficient)
+        if (Direction == 0)
         {
             while (transform.position != FinalPoint)
             {
@@ -78,6 +83,7 @@ public class TrainController : MonoBehaviour
         }
         else
         {
+            //Go past each point
             foreach (Vector3 Point in Points)
             {
                 if (First)
@@ -85,10 +91,11 @@ public class TrainController : MonoBehaviour
                     First = false;
                     FinalRotation = transform.rotation.eulerAngles.y + (45 * DirectionCheck(Points[Points.Count - 1]));
                 }
-                int Direction = DirectionCheck(Point);
+                //Rotate towards the next point gradually
                 float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / (Points.Count / 2));
                 transform.rotation = Quaternion.Euler(0,RotateTarget,0);
 
+                //Move towards next point
                 while (transform.position != Point)
                 {
                     //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,RotateTarget,0), Speed * 10 * Time.deltaTime);
@@ -97,6 +104,7 @@ public class TrainController : MonoBehaviour
                 }
             }
 
+            //Make sure the train is rotated correctly after turn
             transform.rotation = Quaternion.Euler(0, FinalRotation, 0);
         }
         OnSpline = false;
@@ -104,6 +112,7 @@ public class TrainController : MonoBehaviour
 
     private int DirectionCheck(Vector3 Point)
     {
+        //Gets direction towards point in degrees to check if it's left or right of the train
         Vector3 perp = Vector3.Cross(transform.forward, Point - transform.position);
         float dir = Vector3.Dot(perp, transform.up);
 

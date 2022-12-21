@@ -102,6 +102,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    //function to display a warning on the cursor
     private Coroutine CursorWarningFunc = null;
     public void CursorWarning(string Message)
     {
