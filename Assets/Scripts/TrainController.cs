@@ -34,6 +34,12 @@ public class TrainController : MonoBehaviour
     //Draw ray that will pick up colliders on track piece, then get the bezier curve that is attached
     private void Update()
     {
+        if (CurvePoints.Count > 0 && !OnSpline)
+        {
+            OnSpline = true;
+            StartCoroutine(FollowSpline(new List<Vector3>(CurvePoints)));
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
         {
@@ -52,40 +58,47 @@ public class TrainController : MonoBehaviour
                 print("Calculated Points");
             }
         }
-
-        if (CurvePoints.Count > 0 && !OnSpline)
-        {
-            OnSpline = true;
-            StartCoroutine(FollowSpline(new List<Vector3>(CurvePoints)));
-        }
     }
 
     private IEnumerator FollowSpline(List<Vector3> Points)
     {
+        float FinalRotation = 0;
         bool First = true;
-        foreach (Vector3 Point in Points)
-        {
-            if (First)
-            {
-                First = false;
-                float FinalRotation = transform.rotation.eulerAngles.y + (45 * DirectionCheck(Points[Points.Count - 1]));
-            }
-            int Direction = DirectionCheck(Point);
-            float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / (Points.Count / 2));
-            transform.rotation = Quaternion.Euler(0,RotateTarget,0);
 
-            while (transform.position != Point)
+        Vector3 FinalPoint = Points[Points.Count - 1];
+        int FinalDirection = DirectionCheck(FinalPoint);
+        
+        if (FinalDirection == 0)
+        {
+            while (transform.position != FinalPoint)
             {
-                //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,RotateTarget,0), Speed * 10 * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, Point, Speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, FinalPoint, Speed * Time.deltaTime);
                 yield return null;
             }
-            yield return null;
         }
+        else
+        {
+            foreach (Vector3 Point in Points)
+            {
+                if (First)
+                {
+                    First = false;
+                    FinalRotation = transform.rotation.eulerAngles.y + (45 * DirectionCheck(Points[Points.Count - 1]));
+                }
+                int Direction = DirectionCheck(Point);
+                float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / (Points.Count / 2));
+                transform.rotation = Quaternion.Euler(0,RotateTarget,0);
 
-        transform.rotation = Quaternion.Euler(0, FinalRotation, 0);
+                while (transform.position != Point)
+                {
+                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,RotateTarget,0), Speed * 10 * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, Point, Speed * Time.deltaTime);
+                    yield return null;
+                }
+            }
 
-        yield return null;
+            transform.rotation = Quaternion.Euler(0, FinalRotation, 0);
+        }
         OnSpline = false;
     }
 
