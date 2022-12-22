@@ -13,18 +13,23 @@ public class GameHandler : MonoBehaviour
     public GameObject Player;
     public GameObject MapTiles;
     public GameObject MapBorders;
+    public GameObject TrainsParent;
 
-    [Header("UIObjects")]
+    [Header("UI Objects")]
     public GameObject UICanvas;
     public GameObject BuildMenu;
     public GameObject WarningBox;
     public GameObject CursorWarning;
     public GameObject MoneyCounter;
 
+    [Header("UI Prefabs")]
+    public GameObject DepotUI;
+
     [Header("Prefabs")]
     public GameObject BaseTile;
     public GameObject TileBorder;
     public GameObject BuildableIconBase;
+
 
     [Header("Settings")]
     public float CameraSpeed = 10;
@@ -55,5 +60,6 @@ public class GameHandler : MonoBehaviour
 
         // Generate tiles from savegame data
         GetComponent<MapGenerator>().GenerateMap(Savegame);
+        GetComponent<UIController>().GenerateUI();
     }
 }

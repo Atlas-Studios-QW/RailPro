@@ -43,15 +43,17 @@ public class Buildable
     public string name;
     public BuildableType type;
     public GameObject model;
+    public GameObject interactionUI;
     public Sprite icon;
     public string description;
     public int price;
 
-    public Buildable(string Name, BuildableType Type, GameObject Model, Sprite Icon, string Description, int Price)
+    public Buildable(string Name, BuildableType Type, GameObject Model, GameObject InteractionUI, Sprite Icon, string Description, int Price)
     {
         name = Name;
         type = Type;
         model = Model;
+        interactionUI = InteractionUI;
         icon = Icon;
         description = Description;
         price = Price;
@@ -62,6 +64,7 @@ public class Buildable
         name = Buildable.name;
         type = Buildable.type;
         model = Buildable.model;
+        interactionUI = Buildable.interactionUI;
         icon = Buildable.icon;
         description = Buildable.description;
         price = Buildable.price;
@@ -84,7 +87,20 @@ public class Tile
 [System.Serializable]
 public class Locomotive
 {
+    public string name;
+    public string description;
+    public GameObject model;
+    public Sprite icon;
+    public int price;
 
+    public Locomotive(string Name, string Description, GameObject Model, Sprite Icon, int Price)
+    {
+        name = Name;
+        description = Description;
+        model = Model;
+        icon = Icon;
+        price = Price;
+    }
 }
 
 [System.Serializable]
