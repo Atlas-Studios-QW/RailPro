@@ -66,11 +66,10 @@ public class TrainController : MonoBehaviour
     private IEnumerator FollowSpline(List<Vector3> Points)
     {
         float FinalRotation = 0;
-        bool First = true;
 
         //Get the final point on the spline and check in which direction it is
         Vector3 FinalPoint = Points[Points.Count - 1];
-        int Direction = DirectionCheck(FinalPoint);
+        int Direction = DirectionCheck(Points);
         
         //If the direction is 0, meaning straight track, skip all the points in between the first and last and go straight towards the last (much more efficient)
         if (Direction == 0)
@@ -86,47 +85,53 @@ public class TrainController : MonoBehaviour
             //Go past each point
             foreach (Vector3 Point in Points)
             {
-                if (First)
+                if (Points.IndexOf(Point) == 1 && FinalRotation == 0)
                 {
-                    First = false;
-                    FinalRotation = transform.rotation.eulerAngles.y + (45 * DirectionCheck(Points[Points.Count - 1]));
+                    FinalRotation = Mathf.Round((transform.rotation.eulerAngles.y + 45 * DirectionCheck(Points)) / 45) * 45;
                 }
                 //Rotate towards the next point gradually
-                float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / (Points.Count / 2));
-                transform.rotation = Quaternion.Euler(0,RotateTarget,0);
+                float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / Points.Count);
+                transform.rotation = Quaternion.Euler(0, RotateTarget, 0);
 
                 //Move towards next point
                 while (transform.position != Point)
                 {
-                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,RotateTarget,0), Speed * 10 * Time.deltaTime);
                     transform.position = Vector3.MoveTowards(transform.position, Point, Speed * Time.deltaTime);
                     yield return null;
                 }
             }
 
             //Make sure the train is rotated correctly after turn
+            print("Final Rotation: "+FinalRotation);
             transform.rotation = Quaternion.Euler(0, FinalRotation, 0);
         }
         OnSpline = false;
     }
 
-    private int DirectionCheck(Vector3 Point)
+    private int DirectionCheck(List<Vector3> Points)
     {
-        //Gets direction towards point in degrees to check if it's left or right of the train
-        Vector3 perp = Vector3.Cross(transform.forward, Point - transform.position);
-        float dir = Vector3.Dot(perp, transform.up);
-
-        if (dir > 0.01f)
+        if (Points[0].x == Points[Points.Count - 1].x || Points[0].z == Points[Points.Count - 1].z)
         {
-            return 1;
-        }
-        else if (dir < -0.01f)
-        {
-            return -1;
+            return 0;
         }
         else
         {
-            return 0;
+            //Gets direction towards point in degrees to check if it's left or right of the train
+            Vector3 perp = Vector3.Cross(transform.forward, Points[Points.Count - 1] - transform.position);
+            float dir = Vector3.Dot(perp, transform.up);
+
+            if (dir > 0.01f)
+            {
+                return 1;
+            }
+            else if (dir < -0.01f)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

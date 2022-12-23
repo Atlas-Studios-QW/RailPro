@@ -60,6 +60,5 @@ public class GameHandler : MonoBehaviour
 
         // Generate tiles from savegame data
         GetComponent<MapGenerator>().GenerateMap(Savegame);
-        GetComponent<UIController>().GenerateUI();
     }
 }
