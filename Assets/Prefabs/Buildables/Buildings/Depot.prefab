@@ -529,19 +529,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3508587909633287271}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2711779292374938542}
-        m_TargetAssemblyTypeName: DepotBehaviour, Assembly-CSharp
-        m_MethodName: SpawnStock
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &269625504628570207
 GameObject:
   m_ObjectHideFlags: 0
@@ -8242,7 +8230,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838537392241202208}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.0030853152, y: -0.7071001, z: 0.7071001, w: 0.0030853152}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.004, y: 0.004, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12379,6 +12367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4763114925820891629}
   - component: {fileID: 45432465293463195}
+  - component: {fileID: 8299900743321669873}
   - component: {fileID: 2711779292374938542}
   m_Layer: 8
   m_Name: Depot
@@ -12420,6 +12409,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.01, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8299900743321669873
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196314597414104845}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!114 &2711779292374938542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12435,7 +12440,7 @@ MonoBehaviour:
   GH: {fileID: 0}
   InteractionUI: {fileID: 4838537392241202208}
   ScrollView: {fileID: 5232522018272468237}
-  StockCard: {fileID: 8255253622156277370, guid: c163547de0850fc4195c4b60b7477db0,
+  LocoCard: {fileID: 8255253622156277370, guid: c163547de0850fc4195c4b60b7477db0,
     type: 3}
 --- !u!1 &7231047383134679327
 GameObject:
