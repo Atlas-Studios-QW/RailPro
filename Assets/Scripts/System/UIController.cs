@@ -40,18 +40,6 @@ public class UIController : MonoBehaviour
         }
     }
 
-    //Generates a version of all UI elements so it can be used without needing to load it later
-    public void GenerateUI()
-    {
-        foreach (Buildable Buildable in GH.Buildings)
-        {
-            if (Buildable.interactionUI != null)
-            {
-                Instantiate(Buildable.interactionUI);
-            }
-        }
-    }
-
     //Opens the build options
     public void BuildOptions()
     {
@@ -66,7 +54,7 @@ public class UIController : MonoBehaviour
         //When a menu is selected, it takes all the neccasary data from the game handler.
         if (Buildables == "Track") { BuildableList = new List<Buildable>(GH.Tracks); }
         else if (Buildables == "Building") { BuildableList = new List<Buildable>(GH.Buildings); }
-        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Delete,null,null,null,null,0) }; }
+        else if (Buildables == "Delete") { BuildableList = new List<Buildable> { new Buildable("Delete",BuildableType.Delete,null,null,null,0) }; }
         else { Debug.LogError("Incorrect menu requested"); }
 
         int ID = 0;
@@ -105,10 +93,12 @@ public class UIController : MonoBehaviour
         if (Reset && SelectedBuildable.model != null)
         {
             SelectedBuildable.model.transform.rotation = Quaternion.Euler(0, 0, 0);
+            try { SelectedBuildable.model.transform.Find("InteractionUI").rotation = Quaternion.Euler(90, 0, 0); } catch { }
         }
         else if (SelectedBuildable.model != null)
         {
             SelectedBuildable.model.transform.rotation = Quaternion.Euler(0, SelectedBuildable.model.transform.rotation.eulerAngles.y + 90, 0);
+            try { SelectedBuildable.model.transform.Find("InteractionUI").rotation = Quaternion.Euler(90, 0, 0); } catch { }
             try { Destroy(MouseModel); } catch { }
             try { MouseModel = Instantiate(SelectedBuildable.model); } catch { }
         }

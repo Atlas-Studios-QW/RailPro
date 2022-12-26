@@ -37,7 +37,7 @@ public class CameraMovement : MonoBehaviour
         // Limits camera movement
         if (PlayerPos.x < 0) { GH.Player.transform.position = new Vector3(0,PlayerPos.y,PlayerPos.z);}
         if (PlayerPos.x > MapSize.x) { GH.Player.transform.position = new Vector3(MapSize.x,PlayerPos.y,PlayerPos.z);}
-        if (PlayerPos.y < 1) { GH.Player.transform.position = new Vector3(PlayerPos.x,1.001f,PlayerPos.z);}
+        if (PlayerPos.y < 0.5f) { GH.Player.transform.position = new Vector3(PlayerPos.x,0.501f,PlayerPos.z);}
         if (PlayerPos.y > MapSize.x) { GH.Player.transform.position = new Vector3(PlayerPos.x,MapSize.x,PlayerPos.z);}
         if (PlayerPos.z < 0) { GH.Player.transform.position = new Vector3(PlayerPos.x,PlayerPos.y,0);}
         if (PlayerPos.z > MapSize.y) { GH.Player.transform.position = new Vector3(PlayerPos.x,PlayerPos.y,MapSize.y);}

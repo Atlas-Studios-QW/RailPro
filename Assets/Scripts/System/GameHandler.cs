@@ -22,9 +22,6 @@ public class GameHandler : MonoBehaviour
     public GameObject CursorWarning;
     public GameObject MoneyCounter;
 
-    [Header("UI Prefabs")]
-    public GameObject DepotUI;
-
     [Header("Prefabs")]
     public GameObject BaseTile;
     public GameObject TileBorder;
@@ -40,8 +37,7 @@ public class GameHandler : MonoBehaviour
     public List<Buildable> Buildings;
 
     [Header("Trains")]
-    public List<Locomotive> Locomotives = new List<Locomotive>();
-    public List<TrainCar> TrainCars = new List<TrainCar>();
+    public List<Stock> Stock = new List<Stock>();
 
     [Header("Loaded Savegame")]
     public Savegame Savegame;

@@ -1060,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3964,6 +3964,11 @@ PrefabInstance:
       objectReference: {fileID: 743973379}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Stock.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: BuildableIconBase
       value: 
       objectReference: {fileID: 7326955912213138425, guid: 697a33664a308ad408682fd8d8879f19,
@@ -3971,7 +3976,7 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
@@ -3992,6 +3997,22 @@ PrefabInstance:
         type: 3}
       propertyPath: Savegame.playerBalance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[0].name
+      value: Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[0].model
+      value: 
+      objectReference: {fileID: 6965641766841774431, guid: 48e0907b928df314f9acd7cf3fff8620,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[0].price
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
@@ -4036,7 +4057,7 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[4].name
-      value: Buffer
+      value: Switch Left
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
@@ -4046,11 +4067,21 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[5].name
-      value: Turn Right
+      value: Switch Right
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[5].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[6].name
+      value: Buffer
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[6].type
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
@@ -4106,22 +4137,33 @@ PrefabInstance:
         type: 3}
       propertyPath: Tracks.Array.data[4].model
       value: 
-      objectReference: {fileID: 3418496914229604897, guid: 52940d900387daf468def47696d99a3e,
+      objectReference: {fileID: 3418496914229604897, guid: 2022d20e1dfda704d83e5bb289d3d3db,
         type: 3}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[4].price
-      value: 100
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[5].model
       value: 
-      objectReference: {fileID: 3418496914229604897, guid: 0493d7260f28822459d385cf4995ade1,
+      objectReference: {fileID: 3418496914229604897, guid: e27c15e918aee064a8fc96660e93d4cd,
         type: 3}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[5].price
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[6].model
+      value: 
+      objectReference: {fileID: 3418496914229604897, guid: 52940d900387daf468def47696d99a3e,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[6].price
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
@@ -4163,6 +4205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Stock.Array.data[0].description
+      value: Test Loco
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Tracks.Array.data[0].description
       value: Basic Track
       objectReference: {fileID: 0}
@@ -4184,12 +4231,17 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[4].description
-      value: End of track
+      value: Switch with left turn
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Tracks.Array.data[5].description
-      value: Basic Track
+      value: Switch with right turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Tracks.Array.data[6].description
+      value: End of track
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
