@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,8 @@ public class WorldInteraction : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("WorldInteractors")) && !EventSystem.current.IsPointerOverGameObject())
             {
-                try { hit.transform.Find("BuiltObject").GetChild(0).Find("InteractionUI").gameObject.SetActive(true); } catch { }
+                print("World interaction hit: "+hit.transform.gameObject);
+                try { hit.transform.Find("InteractionUI").gameObject.SetActive(true); } catch (Exception Error) { print(Error); }
                 try { hit.transform.Find("BuiltObject").GetChild(0).GetComponent<SwitchController>().SwitchTrack(); } catch { }
             }
         }

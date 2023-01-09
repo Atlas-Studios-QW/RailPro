@@ -3949,6 +3949,11 @@ PrefabInstance:
       objectReference: {fileID: 1944601143}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: CameraSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: MoneyCounter
       value: 
       objectReference: {fileID: 227049591}

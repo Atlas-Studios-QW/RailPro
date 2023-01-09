@@ -60,6 +60,7 @@ public class DepotBehaviour : MonoBehaviour
 
     private IEnumerator FixedStockSpawn()
     {
+        print("Test");
         if (GH.Savegame.playerBalance >= TotalPrice)
         {
             print("Spawned");
@@ -69,14 +70,16 @@ public class DepotBehaviour : MonoBehaviour
                 GameObject SpawnedStock = Instantiate(Stock.model, transform.position, transform.rotation, GH.TrainsParent.transform);
                 while (SpawnedStock.GetComponent<TrainController>().NextSpline == null)
                 {
-                    SpawnedStock.transform.position = Vector3.MoveTowards(SpawnedStock.transform.position, SpawnedStock.transform.position + Vector3.forward, Time.deltaTime);
+                    SpawnedStock.transform.position = Vector3.MoveTowards(SpawnedStock.transform.position, SpawnedStock.transform.position + SpawnedStock.transform.forward, Time.deltaTime);
                     yield return null;
                 }
             }
+            SpawnList.Clear();
         }
         else
         {
             SpawnList.Clear();
+            print("Not enough money to buy stock");
         }
     }
 }
