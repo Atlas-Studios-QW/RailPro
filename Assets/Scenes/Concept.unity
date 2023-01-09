@@ -3907,9 +3907,20 @@ PrefabInstance:
       objectReference: {fileID: 890160222}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Level
+      value: 
+      objectReference: {fileID: 1275761819}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 52739956}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Terrain
+      value: 
+      objectReference: {fileID: 2482990439564013708, guid: 11f8e7b443dffd44ea618522a434ff5e,
+        type: 3}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: BaseTile
@@ -3969,6 +3980,11 @@ PrefabInstance:
       objectReference: {fileID: 743973379}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: SplineResolution
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Stock.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4002,6 +4018,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Savegame.playerBalance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: TempSaveData.mapSize.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: TempSaveData.mapSize.y
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}

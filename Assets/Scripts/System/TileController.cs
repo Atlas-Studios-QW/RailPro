@@ -37,6 +37,7 @@ public class TileController : MonoBehaviour
         else if (NewBuildable.type == BuildableType.Delete)
         {
             ConfirmedBuild = false;
+            StartCoroutine(ConfirmBuild(NewBuildable));
         }
         else
         {

@@ -52,12 +52,12 @@ public class Building : MonoBehaviour
                         TileController TC = hit.transform.gameObject.GetComponent<TileController>();
 
                         //New buildable so it can be changed without causing the original to be changed
-                        Buildable FinalBuildable = new Buildable(SelectedBuildable);
+                        Buildable FinalBuildable = SelectedBuildable;
 
                         //Check if the selected buildable is not already there
                         if (FinalBuildable != TC.CurrentBuildable)
                         {
-                            if (FinalBuildable.type == BuildableType.Delete)
+                            if (FinalBuildable.type == BuildableType.Delete && FinalBuildable.type != BuildableType.Building)
                             {
                                 FinalBuildable.price = -TC.CurrentBuildable.price / 2;
                             }

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
-using TreeEditor;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -90,7 +88,8 @@ public class TrainController : MonoBehaviour
                     FinalRotation = Mathf.Round((transform.rotation.eulerAngles.y + 45 * DirectionCheck(Points)) / 45) * 45;
                 }
                 //Rotate towards the next point gradually
-                float RotateTarget = transform.rotation.eulerAngles.y + (45 * Direction / Points.Count);
+                float RotateTarget = transform.rotation.eulerAngles.y + (45f * Direction / Points.Count);
+                print("rotate: " + RotateTarget);
                 transform.rotation = Quaternion.Euler(0, RotateTarget, 0);
 
                 //Move towards next point
