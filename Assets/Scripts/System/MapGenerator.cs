@@ -60,7 +60,7 @@ public class MapGenerator : MonoBehaviour
         //Place terrain which will be visible to player
         GameObject Terrain = Instantiate(GH.Terrain, GH.Level.transform);
         Terrain.transform.localScale = new Vector3(LoadedSavegame.mapSize.x, 0.1f, LoadedSavegame.mapSize.y);
-        Terrain.transform.position = new Vector3(LoadedSavegame.mapSize.x / 2, 0, LoadedSavegame.mapSize.y / 2);
+        Terrain.transform.position = new Vector3(LoadedSavegame.mapSize.x / 2 - 0.5f, 0, LoadedSavegame.mapSize.y / 2 - 0.5f);
         GH.MapBorders.SetActive(false);
     }
 }
