@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7195601286833294069}
   - component: {fileID: 8533067068680549755}
   - component: {fileID: 5144636726291003730}
-  - component: {fileID: 7869022282235569449}
   m_Layer: 7
   m_Name: BaseTile
   m_TagString: Untagged
@@ -99,19 +98,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99, y: 0.1, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7869022282235569449
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7065376605882253457}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
