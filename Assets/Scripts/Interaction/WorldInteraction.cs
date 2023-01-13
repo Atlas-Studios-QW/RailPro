@@ -18,7 +18,7 @@ public class WorldInteraction : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("WorldInteractors")) && !EventSystem.current.IsPointerOverGameObject())
             {
                 try { hit.transform.Find("InteractionUI").gameObject.SetActive(true); } catch {}
-                try { hit.transform.Find("BuiltObject").GetChild(0).GetComponent<SwitchController>().SwitchTrack(); } catch { }
+                try { hit.transform.GetComponent<SwitchController>().SwitchTrack(); } catch { }
             }
         }
     }

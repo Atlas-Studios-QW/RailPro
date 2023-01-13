@@ -60,7 +60,6 @@ public class DepotBehaviour : MonoBehaviour
 
     private IEnumerator FixedStockSpawn()
     {
-        print("Test");
         if (GH.Savegame.playerBalance >= TotalPrice)
         {
             print("Spawned");

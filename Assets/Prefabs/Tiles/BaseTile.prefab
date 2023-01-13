@@ -85,6 +85,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     price: 0
+  CanBuild: 1
 --- !u!65 &5144636726291003730
 BoxCollider:
   m_ObjectHideFlags: 0

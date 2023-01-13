@@ -4022,12 +4022,12 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: TempSaveData.mapSize.x
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: TempSaveData.mapSize.y
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
@@ -4118,7 +4118,7 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: TempSaveData.playerBalance
-      value: 1000000
+      value: 10000000
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}

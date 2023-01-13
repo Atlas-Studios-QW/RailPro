@@ -10,8 +10,6 @@ public class TileController : MonoBehaviour
     public GameObject BuiltObjectParent;
     [HideInInspector]
     public Buildable CurrentBuildable;
-    private Buildable OldBuildable;
-    private bool ConfirmedBuild = false;
 
     private void Start()
     {
@@ -21,7 +19,6 @@ public class TileController : MonoBehaviour
     // Whenever something is built, add the object to the tile
     public void UpdateTile(Buildable NewBuildable)
     {
-        OldBuildable = CurrentBuildable;
         CurrentBuildable = NewBuildable;
         if (BuiltObjectParent.transform.childCount > 0)
         {
@@ -31,41 +28,24 @@ public class TileController : MonoBehaviour
         if (NewBuildable.model != null)
         {
             Instantiate(NewBuildable.model, BuiltObjectParent.transform);
-            ConfirmedBuild = false;
-            StartCoroutine(ConfirmBuild(NewBuildable));
+            GH.Savegame.tiles[int.Parse(gameObject.name)].builtObject = NewBuildable;
+            if (NewBuildable.type == BuildableType.Track)
+            {
+                GH.Savegame.playerBalance -= 50;
+            }
+            else
+            {
+                GH.Savegame.playerBalance -= NewBuildable.price;
+            }
         }
         else if (NewBuildable.type == BuildableType.Delete)
         {
-            ConfirmedBuild = false;
-            StartCoroutine(ConfirmBuild(NewBuildable));
+            GH.Savegame.tiles[int.Parse(gameObject.name)].builtObject = NewBuildable;
+            GH.Savegame.playerBalance -= NewBuildable.price;
         }
         else
         {
             Debug.LogError("No model given for chosen object");
-        }
-    }
-
-    //The CollisionCheck object on all buildables will trigger this if objects are overlapping
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!ConfirmedBuild)
-        {
-            Destroy(BuiltObjectParent.transform.GetChild(0).gameObject);
-            CurrentBuildable = OldBuildable;
-            ConfirmedBuild = true;
-            GH.GetComponent<UIController>().CursorWarning("Cannot build here!");
-        }
-    }
-
-    //Confirms build when no collision is detected
-    private IEnumerator ConfirmBuild(Buildable NewBuildabe)
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (!ConfirmedBuild)
-        {
-            ConfirmedBuild = true;
-            GH.Savegame.tiles[int.Parse(gameObject.name)].builtObject = NewBuildabe;
-            GH.Savegame.playerBalance -= NewBuildabe.price;
         }
     }
 }

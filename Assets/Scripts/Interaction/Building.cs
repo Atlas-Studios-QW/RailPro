@@ -42,7 +42,7 @@ public class Building : MonoBehaviour
                 //Try catch to ignore anti build hitboxes
                 int HitTileID = -1;
                 try { HitTileID = int.Parse(hit.transform.gameObject.name); } catch { }
-                if (HitTileID != PreviousTile && HitTileID != -1)
+                if (HitTileID != -1)
                 {
                     //Check if the player selected a buildable
                     Buildable SelectedBuildable = GetComponent<UIController>().SelectedBuildable;
@@ -57,13 +57,14 @@ public class Building : MonoBehaviour
                         //Check if the selected buildable is not already there
                         if (FinalBuildable != TC.CurrentBuildable)
                         {
+                            bool TrackToTrack = false;
                             if (FinalBuildable.type == BuildableType.Delete && FinalBuildable.type != BuildableType.Building)
                             {
                                 FinalBuildable.price = -TC.CurrentBuildable.price / 2;
                             }
                             else if (FinalBuildable.type == BuildableType.Track && TC.CurrentBuildable.type == BuildableType.Track)
                             {
-                                FinalBuildable.price = FinalBuildable.price / 2;
+                                TrackToTrack = true;
                             }
 
                             //If the current buildable is a building, warn the player before removing
@@ -76,9 +77,23 @@ public class Building : MonoBehaviour
                             else
                             {
                                 //Check if player has enough money, and if so, remove the cost, else warn the player
-                                if (GH.Savegame.playerBalance >= FinalBuildable.price)
+                                if (GH.Savegame.playerBalance >= FinalBuildable.price || FinalBuildable.price < 0)
                                 {
-                                    TC.UpdateTile(FinalBuildable);
+                                    if (FinalBuildable.type == BuildableType.Delete)
+                                    {
+                                        TC.UpdateTile(FinalBuildable);
+                                    } 
+                                    else
+                                    {
+                                        if (GetComponent<UIController>().MouseModel.GetComponent<CollisionCheck>().CollisionAmount == 0 || TrackToTrack)
+                                        {
+                                            TC.UpdateTile(FinalBuildable);
+                                        } 
+                                        else
+                                        {
+                                            GetComponent<UIController>().CursorWarning("Cannot build here!");
+                                        }
+                                    }
                                 }
                                 else
                                 {

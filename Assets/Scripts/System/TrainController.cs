@@ -15,13 +15,12 @@ public class TrainController : MonoBehaviour
     public GameObject Forward;
     public GameObject Reverse;
 
-    public float Speed = 1;
-
+    private float Speed = 1;
+    [HideInInspector]
     public BezierCurve NextSpline;
-    List<Vector3> CurvePoints = new List<Vector3>();
-
-    public bool OnSpline = false;
-    public float SplineRes;
+    private List<Vector3> CurvePoints = new List<Vector3>();
+    private bool OnSpline = false;
+    private float SplineRes;
 
     private void Start()
     {
@@ -46,7 +45,6 @@ public class TrainController : MonoBehaviour
 
             if (FoundSpline != NextSpline)
             {
-                print("Spline Found!");
                 NextSpline = FoundSpline;
 
                 //Get all points in curve based on the set resolution
@@ -55,7 +53,6 @@ public class TrainController : MonoBehaviour
                 {
                     CurvePoints.Add(NextSpline.GetPointAt(i));
                 }
-                print("Calculated Points");
             }
         }
     }
@@ -89,7 +86,6 @@ public class TrainController : MonoBehaviour
                 }
                 //Rotate towards the next point gradually
                 float RotateTarget = transform.rotation.eulerAngles.y + (45f * Direction / Points.Count);
-                print("rotate: " + RotateTarget);
                 transform.rotation = Quaternion.Euler(0, RotateTarget, 0);
 
                 //Move towards next point
@@ -101,7 +97,6 @@ public class TrainController : MonoBehaviour
             }
 
             //Make sure the train is rotated correctly after turn
-            print("Final Rotation: "+FinalRotation);
             transform.rotation = Quaternion.Euler(0, FinalRotation, 0);
         }
         OnSpline = false;

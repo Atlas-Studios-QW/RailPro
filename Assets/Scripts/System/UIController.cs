@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class UIController : MonoBehaviour
     private List<Buildable> BuildableList = new List<Buildable>();
 
     private bool BuildMenuOpen;
-    private GameObject MouseModel;
+    public GameObject MouseModel;
 
     //Change the cursor to show what is selected
     private void Update()
@@ -85,7 +86,11 @@ public class UIController : MonoBehaviour
         int Selected = int.Parse(EventSystem.current.currentSelectedGameObject.transform.parent.name);
         SelectedBuildable = new Buildable(BuildableList[Selected]);
         try { Destroy(MouseModel); } catch { }
-        try { MouseModel = Instantiate(SelectedBuildable.model); } catch { }
+        if (SelectedBuildable.type != BuildableType.Delete)
+        {
+            MouseModel = Instantiate(SelectedBuildable.model);
+
+        }
     }
 
     public void RotateBuildable(bool Reset)
