@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Net;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class TrainController : MonoBehaviour
 {
@@ -15,7 +12,11 @@ public class TrainController : MonoBehaviour
     public GameObject Forward;
     public GameObject Reverse;
 
-    private float Speed = 1;
+    private float Speed = 10;
+    private float RequestedSpeed = 10;
+
+    [HideInInspector]
+    public Stock StockInfo;
     [HideInInspector]
     public BezierCurve NextSpline;
     private List<Vector3> CurvePoints = new List<Vector3>();
@@ -55,6 +56,8 @@ public class TrainController : MonoBehaviour
                 }
             }
         }
+
+        Speed = UpdateSpeed(RequestedSpeed);
     }
 
     //When called, will follow the by the selected points
@@ -69,9 +72,13 @@ public class TrainController : MonoBehaviour
         //If the direction is 0, meaning straight track, skip all the points in between the first and last and go straight towards the last (much more efficient)
         if (Direction == 0)
         {
+            if (RequestedSpeed < StockInfo.maxSpeed)
+            {
+                RequestedSpeed += 10;
+            }
             while (transform.position != FinalPoint)
             {
-                transform.position = Vector3.MoveTowards(transform.position, FinalPoint, Speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, FinalPoint, Speed * 0.1f * Time.deltaTime);
                 yield return null;
             }
         }
@@ -91,7 +98,7 @@ public class TrainController : MonoBehaviour
                 //Move towards next point
                 while (transform.position != Point)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, Point, Speed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, Point, Speed * 0.1f * Time.deltaTime);
                     yield return null;
                 }
             }
@@ -127,5 +134,16 @@ public class TrainController : MonoBehaviour
                 return 0;
             }
         }
+    }
+
+    private float UpdateSpeed(float TargetSpeed)
+    {
+        if (TargetSpeed > StockInfo.maxSpeed)
+        {
+            TargetSpeed = StockInfo.maxSpeed;
+        }
+
+        float NewSpeed = Speed + (TargetSpeed - Speed) * (StockInfo.acceleration * 0.01f);
+        return NewSpeed;
     }
 }

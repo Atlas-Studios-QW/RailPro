@@ -3790,7 +3790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363634f1b93de1489bc209cbd0259d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanBuild: 0
+  CollisionAmount: 1
 --- !u!1 &3511624307512326847
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,8 +6535,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.01, z: 0.4}
-  m_Center: {x: -0.5, y: 0, z: -0.3}
+  m_Size: {x: 0.5, y: 0.01, z: 0.3}
+  m_Center: {x: -0.6, y: 0, z: -0.15}
 --- !u!114 &7079391189483408031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6852,8 +6852,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.01, z: 0.4}
-  m_Center: {x: -0.5, y: 0, z: -0.3}
+  m_Size: {x: 0.5, y: 0.01, z: 0.3}
+  m_Center: {x: -0.6, y: 0, z: -0.15}
 --- !u!114 &7972690573208939199
 MonoBehaviour:
   m_ObjectHideFlags: 0

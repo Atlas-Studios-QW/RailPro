@@ -67,6 +67,7 @@ public class DepotBehaviour : MonoBehaviour
             foreach (Stock Stock in SpawnList)
             {
                 GameObject SpawnedStock = Instantiate(Stock.model, transform.position, transform.rotation, GH.TrainsParent.transform);
+                SpawnedStock.GetComponent<TrainController>().StockInfo = Stock;
                 while (SpawnedStock.GetComponent<TrainController>().NextSpline == null)
                 {
                     SpawnedStock.transform.position = Vector3.MoveTowards(SpawnedStock.transform.position, SpawnedStock.transform.position + SpawnedStock.transform.forward, Time.deltaTime);

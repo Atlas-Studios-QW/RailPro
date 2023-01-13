@@ -12467,7 +12467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363634f1b93de1489bc209cbd0259d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanBuild: 0
+  CollisionAmount: 1
 --- !u!1 &7231047383134679327
 GameObject:
   m_ObjectHideFlags: 0

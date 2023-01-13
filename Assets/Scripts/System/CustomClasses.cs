@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 
-// CustomClasses class kept in to stop unity from being a bitch about it
+// CustomClasses class kept in to stop unity from giving me useless errors
 public class CustomClasses : MonoBehaviour {}
 
 // Savegame class which stores all data that has to be saved.
@@ -89,13 +89,17 @@ public class Stock
     public GameObject model;
     public Sprite icon;
     public int price;
+    public int maxSpeed;
+    public int acceleration;
 
-    public Stock(string Name, string Description, GameObject Model, Sprite Icon, int Price)
+    public Stock(string Name, string Description, GameObject Model, Sprite Icon, int Price, int MaxSpeed, int Acceleration)
     {
         name = Name;
         description = Description;
         model = Model;
         icon = Icon;
         price = Price;
+        maxSpeed = MaxSpeed;
+        acceleration = Acceleration;
     }
 }

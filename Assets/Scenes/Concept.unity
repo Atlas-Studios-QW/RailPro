@@ -4036,6 +4036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Stock.Array.data[1].name
+      value: Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Stock.Array.data[0].model
       value: 
       objectReference: {fileID: 6965641766841774431, guid: 48e0907b928df314f9acd7cf3fff8620,
@@ -4043,6 +4048,17 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: Stock.Array.data[0].price
+      value: 25000
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[1].model
+      value: 
+      objectReference: {fileID: 6965641766841774431, guid: 48e0907b928df314f9acd7cf3fff8620,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[1].price
       value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
@@ -4209,6 +4225,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Stock.Array.data[0].maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[1].maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Buildings.Array.data[0].model
       value: 
       objectReference: {fileID: 7196314597414104845, guid: 6fed060b3bea90a44aa16a8f863ed6b5,
@@ -4238,6 +4264,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Stock.Array.data[0].description
       value: Test Loco
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[1].description
+      value: Test Loco
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Stock.Array.data[0].acceleration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
