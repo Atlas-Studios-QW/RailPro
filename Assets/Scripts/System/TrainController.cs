@@ -17,10 +17,10 @@ public class TrainController : MonoBehaviour
 
     [HideInInspector]
     public Stock StockInfo;
-    [HideInInspector]
+    //[HideInInspector]
     public BezierCurve NextSpline;
     private List<Vector3> CurvePoints = new List<Vector3>();
-    private bool OnSpline = false;
+    public bool OnSpline = false;
     private float SplineRes;
 
     private void Start()

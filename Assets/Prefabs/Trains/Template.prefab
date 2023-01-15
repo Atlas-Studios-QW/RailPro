@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6303333387081132291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.1, z: -0.25}
+  m_LocalPosition: {x: -0.05, y: 0.1, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113,10 +113,16 @@ MonoBehaviour:
   GH: {fileID: 0}
   Forward: {fileID: 7785295742653357097}
   Reverse: {fileID: 6303333387081132291}
-  Speed: 1
+  StockInfo:
+    name: 
+    description: 
+    model: {fileID: 0}
+    icon: {fileID: 0}
+    price: 0
+    maxSpeed: 0
+    acceleration: 0
   NextSpline: {fileID: 0}
   OnSpline: 0
-  SplineRes: 0
 --- !u!1 &7785295742653357097
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7785295742653357097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.1, z: 0.25}
+  m_LocalPosition: {x: 0.05, y: 0.1, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
