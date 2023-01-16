@@ -11,7 +11,9 @@ public class DepotBehaviour : MonoBehaviour
 
     [Header("Connect UI")]
     public GameObject InteractionUI;
-    public GameObject ScrollView;
+
+    public GameObject LocomotivesView;
+    public GameObject TraincarsView;
 
     [Header("Card Prefab")]
     public GameObject StockCard;
@@ -23,10 +25,10 @@ public class DepotBehaviour : MonoBehaviour
     {
         GH = GameObject.Find("ScriptHolder").GetComponent<GameHandler>();
 
-        foreach (Stock Stock in GH.Stock)
+        foreach (Stock Stock in GH.Locomotives)
         {
             GameObject NewCard = GenerateLocoCard(Stock);
-            GameObject SpawnedCard = Instantiate(NewCard, ScrollView.transform);
+            GameObject SpawnedCard = Instantiate(NewCard, LocomotivesView.transform);
             SpawnedCard.transform.Find("Base").GetComponent<Button>().onClick.AddListener(() => AddSelection(Stock));
         }
     }
@@ -81,5 +83,12 @@ public class DepotBehaviour : MonoBehaviour
             SpawnList.Clear();
             print("Not enough money to buy stock");
         }
+    }
+
+    //Shows selected scrollview, if true, it shows the traincars, if false, it shows the locomotives
+    public void ShowScrollView(bool CarView)
+    {
+        LocomotivesView.SetActive(!CarView);
+        TraincarsView.SetActive(CarView);
     }
 }

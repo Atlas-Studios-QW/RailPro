@@ -25,8 +25,20 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        float FixedCameraSpeed = CameraSpeed;
+
+        if (Input.GetButton("SpeedUp"))
+        {
+            FixedCameraSpeed = CameraSpeed * 2.5f;
+        }
+        else if (Input.GetButton("SpeedDown"))
+        {
+            FixedCameraSpeed = CameraSpeed * 0.5f;
+        }
+
+
         PlayerPos = GH.Player.transform.position;
-        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * CameraSpeed * (PlayerPos.y / 100 + 0.1f) / 50, Input.GetAxis("ScrollWheel") * -CameraSpeed, Input.GetAxis("Vertical") * CameraSpeed * (PlayerPos.y / 100 + 0.1f) / 50);
+        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * FixedCameraSpeed * (PlayerPos.y / 100 + 0.1f) / 50, Input.GetAxis("ScrollWheel") * -FixedCameraSpeed, Input.GetAxis("Vertical") * FixedCameraSpeed * (PlayerPos.y / 100 + 0.1f) / 50);
 
         Vector2 MapSize = Savegame.mapSize;
 
