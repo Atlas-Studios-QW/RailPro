@@ -29,12 +29,21 @@ public class Savegame
     }
 }
 
+
+
 [System.Serializable]
 public enum BuildableType
 {
     Delete,
     Track,
     Building
+}
+
+[System.Serializable]
+public enum StockType
+{
+    Locomotive,
+    Traincar
 }
 
 [System.Serializable]
@@ -86,20 +95,22 @@ public class Stock
 {
     public string name;
     public string description;
+    public StockType type;
     public GameObject model;
     public Sprite icon;
     public int price;
     public int maxSpeed;
-    public int acceleration;
+    public int trainEffect;
 
-    public Stock(string Name, string Description, GameObject Model, Sprite Icon, int Price, int MaxSpeed, int Acceleration)
+    public Stock(string Name, string Description, StockType Type, GameObject Model, Sprite Icon, int Price, int MaxSpeed, int TrainEffect)
     {
         name = Name;
         description = Description;
+        type = Type;
         model = Model;
         icon = Icon;
         price = Price;
         maxSpeed = MaxSpeed;
-        acceleration = Acceleration;
+        trainEffect = TrainEffect;
     }
 }

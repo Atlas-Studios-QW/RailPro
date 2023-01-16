@@ -25,15 +25,24 @@ public class DepotBehaviour : MonoBehaviour
     {
         GH = GameObject.Find("ScriptHolder").GetComponent<GameHandler>();
 
+        //Generate cars and add them to scrollview
         foreach (Stock Stock in GH.Locomotives)
         {
-            GameObject NewCard = GenerateLocoCard(Stock);
+            GameObject NewCard = GenerateStockCard(Stock, true);
             GameObject SpawnedCard = Instantiate(NewCard, LocomotivesView.transform);
+            SpawnedCard.transform.Find("Base").GetComponent<Button>().onClick.AddListener(() => AddSelection(Stock));
+        }
+
+        foreach (Stock Stock in GH.Traincars)
+        {
+            GameObject NewCard = GenerateStockCard(Stock, false);
+            GameObject SpawnedCard = Instantiate(NewCard, TraincarsView.transform);
             SpawnedCard.transform.Find("Base").GetComponent<Button>().onClick.AddListener(() => AddSelection(Stock));
         }
     }
 
-    private GameObject GenerateLocoCard(Stock Stock)
+    //Generate a card that can be palced in the scroll view. when bool is true, makes for locomotive, if false, makes for traincar
+    private GameObject GenerateStockCard(Stock Stock, bool IsLocomotive)
     {
         GameObject NewCard = StockCard;
         Transform CardBase = NewCard.transform.Find("Base");
@@ -55,6 +64,7 @@ public class DepotBehaviour : MonoBehaviour
         print("Added stock");
     }
 
+    //Start spawning stock
     public void SpawnStock()
     {
         StartCoroutine(FixedStockSpawn());
@@ -62,19 +72,27 @@ public class DepotBehaviour : MonoBehaviour
 
     private IEnumerator FixedStockSpawn()
     {
+        //Check balance and then spawn each bought item. Then sends it off
         if (GH.Savegame.playerBalance >= TotalPrice)
         {
+            GameObject PreviousStock = null;
+
             print("Spawned");
             GH.Savegame.playerBalance -= TotalPrice;
             foreach (Stock Stock in SpawnList)
             {
                 GameObject SpawnedStock = Instantiate(Stock.model, transform.position, transform.rotation, GH.TrainsParent.transform);
                 SpawnedStock.GetComponent<TrainController>().StockInfo = Stock;
+                if (PreviousStock != null) {
+                    PreviousStock.GetComponent<TrainController>().StockInfo = Stock;
+                }
+                SpawnedStock.GetComponent<TrainController>().ConnectedStock.Add(PreviousStock);
                 while (SpawnedStock.GetComponent<TrainController>().NextSpline == null)
                 {
                     SpawnedStock.transform.position = Vector3.MoveTowards(SpawnedStock.transform.position, SpawnedStock.transform.position + SpawnedStock.transform.forward, Time.deltaTime);
                     yield return null;
                 }
+                PreviousStock = SpawnedStock;
             }
             SpawnList.Clear();
         }

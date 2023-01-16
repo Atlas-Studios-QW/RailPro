@@ -4011,6 +4011,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Traincars.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Locomotives.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4235,6 +4240,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Traincars.Array.data[0].name
+      value: Template Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Traincars.Array.data[0].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Buildings.Array.data[0].model
       value: 
       objectReference: {fileID: 7196314597414104845, guid: 6fed060b3bea90a44aa16a8f863ed6b5,
@@ -4246,8 +4261,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Traincars.Array.data[0].model
+      value: 
+      objectReference: {fileID: 6965641766841774431, guid: 146c4882d6dd0c34b8bb09cddb39cbdf,
+        type: 3}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Traincars.Array.data[0].price
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Locomotives.Array.data[0].name
-      value: Template
+      value: Template Loco
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
@@ -4312,13 +4338,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Traincars.Array.data[0].maxSpeed
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Locomotives.Array.data[0].maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Buildings.Array.data[0].description
       value: Here you can buy trains
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
+      propertyPath: Traincars.Array.data[0].description
+      value: Temporary Traincar
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Traincars.Array.data[0].trainEffect
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Traincars.Array.data[0].acceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
       propertyPath: Locomotives.Array.data[0].description
       value: Temporary Locomotive
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Locomotives.Array.data[0].trainEffect
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
+        type: 3}
+      propertyPath: Locomotives.Array.data[0].acceleration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846040, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}

@@ -12,6 +12,9 @@ public class TrainController : MonoBehaviour
     public GameObject Forward;
     public GameObject Reverse;
 
+    //[HideInInspector]
+    public List<GameObject> ConnectedStock = new List<GameObject>();
+
     private float Speed = 10;
     private float RequestedSpeed = 10;
 
@@ -143,7 +146,7 @@ public class TrainController : MonoBehaviour
             TargetSpeed = StockInfo.maxSpeed;
         }
 
-        float NewSpeed = Speed + (TargetSpeed - Speed) * (StockInfo.acceleration * 0.01f);
+        float NewSpeed = Speed + (TargetSpeed - Speed) * (StockInfo.trainEffect * 0.01f);
         return NewSpeed;
     }
 }
