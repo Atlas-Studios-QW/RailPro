@@ -83,15 +83,18 @@ public class DepotBehaviour : MonoBehaviour
             {
                 GameObject SpawnedStock = Instantiate(Stock.model, transform.position, transform.rotation, GH.TrainsParent.transform);
                 SpawnedStock.GetComponent<TrainController>().StockInfo = Stock;
-                if (PreviousStock != null) {
-                    PreviousStock.GetComponent<TrainController>().StockInfo = Stock;
-                }
                 SpawnedStock.GetComponent<TrainController>().ConnectedStock.Add(PreviousStock);
                 while (SpawnedStock.GetComponent<TrainController>().NextSpline == null)
                 {
                     SpawnedStock.transform.position = Vector3.MoveTowards(SpawnedStock.transform.position, SpawnedStock.transform.position + SpawnedStock.transform.forward, Time.deltaTime);
                     yield return null;
                 }
+                
+                if (PreviousStock != null)
+                {
+                    PreviousStock.GetComponent<TrainController>().ConnectedStock.Add(SpawnedStock);
+                }
+
                 PreviousStock = SpawnedStock;
             }
             SpawnList.Clear();

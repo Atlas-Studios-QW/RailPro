@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TrainController : MonoBehaviour
@@ -12,18 +13,22 @@ public class TrainController : MonoBehaviour
     public GameObject Forward;
     public GameObject Reverse;
 
-    //[HideInInspector]
+    [HideInInspector]
     public List<GameObject> ConnectedStock = new List<GameObject>();
 
-    private float Speed = 10;
-    private float RequestedSpeed = 10;
+    public bool Direction = true;
+    public float Speed = 10;
+    public float RequestedSpeed = 10;
 
     [HideInInspector]
     public Stock StockInfo;
-    //[HideInInspector]
+    [HideInInspector]
     public BezierCurve NextSpline;
     private List<Vector3> CurvePoints = new List<Vector3>();
+    [HideInInspector]
     public bool OnSpline = false;
+    [HideInInspector]
+    public List<Vector3> FollowerLocations = new List<Vector3>();
     private float SplineRes;
 
     private void Start()
@@ -42,25 +47,33 @@ public class TrainController : MonoBehaviour
         }
 
         //Draw ray that will pick up colliders on track piece, then get the spline that is attached
-        RaycastHit hit;
-        if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
+        if (ConnectedStock[0] != null)
         {
-            BezierCurve FoundSpline = hit.transform.GetComponent<BezierCurve>();
-
-            if (FoundSpline != NextSpline)
+            RaycastHit hit;
+            if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
             {
-                NextSpline = FoundSpline;
+                BezierCurve FoundSpline = hit.transform.GetComponent<BezierCurve>();
 
-                //Get all points in curve based on the set resolution
-                CurvePoints.Clear();
-                for (float i = 0f; i < 1; i += 1 / SplineRes)
+                if (FoundSpline != NextSpline)
                 {
-                    CurvePoints.Add(NextSpline.GetPointAt(i));
+                    NextSpline = FoundSpline;
+
+                    //Get all points in curve based on the set resolution
+                    CurvePoints.Clear();
+                    for (float i = 0f; i < 1; i += 1 / SplineRes)
+                    {
+                        CurvePoints.Add(NextSpline.GetPointAt(i));
+                    }
                 }
             }
-        }
 
-        Speed = UpdateSpeed(RequestedSpeed);
+            Speed = UpdateSpeed(RequestedSpeed);
+
+        }
+        else
+        {
+
+        }
     }
 
     //When called, will follow the by the selected points
@@ -70,15 +83,20 @@ public class TrainController : MonoBehaviour
 
         //Get the final point on the spline and check in which direction it is
         Vector3 FinalPoint = Points[Points.Count - 1];
-        int Direction = DirectionCheck(Points);
+        int SplineDirection = DirectionCheck(Points);
         
         //If the direction is 0, meaning straight track, skip all the points in between the first and last and go straight towards the last (much more efficient)
-        if (Direction == 0)
+        if (SplineDirection == 0)
         {
-            if (RequestedSpeed < StockInfo.maxSpeed)
+            if (RequestedSpeed < StockInfo.maxSpeed && Direction)
             {
                 RequestedSpeed += 10;
             }
+            else if (RequestedSpeed > -StockInfo.maxSpeed && !Direction)
+            {
+                RequestedSpeed -= 10;
+            }
+
             while (transform.position != FinalPoint)
             {
                 transform.position = Vector3.MoveTowards(transform.position, FinalPoint, Speed * 0.1f * Time.deltaTime);
@@ -95,7 +113,7 @@ public class TrainController : MonoBehaviour
                     FinalRotation = Mathf.Round((transform.rotation.eulerAngles.y + 45 * DirectionCheck(Points)) / 45) * 45;
                 }
                 //Rotate towards the next point gradually
-                float RotateTarget = transform.rotation.eulerAngles.y + (45f * Direction / Points.Count);
+                float RotateTarget = transform.rotation.eulerAngles.y + (45f * SplineDirection / Points.Count);
                 transform.rotation = Quaternion.Euler(0, RotateTarget, 0);
 
                 //Move towards next point
@@ -145,8 +163,37 @@ public class TrainController : MonoBehaviour
         {
             TargetSpeed = StockInfo.maxSpeed;
         }
+        else if (TargetSpeed < -StockInfo.maxSpeed)
+        {
+            TargetSpeed = -StockInfo.maxSpeed;
+        }
 
-        float NewSpeed = Speed + (TargetSpeed - Speed) * (StockInfo.trainEffect * 0.01f);
+        float NewSpeed = Speed;
+
+        //if (ConnectedStock[0] != null && Direction)
+        //{
+        //    NewSpeed = ConnectedStock[0].GetComponent<TrainController>().Speed + (Vector3.Distance(transform.position, ConnectedStock[0].transform.position) - 1f);
+        //}
+        //else if (ConnectedStock[1] != null && !Direction)
+        //{
+        //    NewSpeed = ConnectedStock[1].GetComponent<TrainController>().Speed - (Vector3.Distance(transform.position,ConnectedStock[1].transform.position) - 1f);
+        //}
+        //else
+        //{
+        NewSpeed = Speed + (TargetSpeed - Speed) * (StockInfo.trainEffect * 0.01f);
+        //}
+
+        //print(NewSpeed);
+
+        if (Direction && NewSpeed < 0)
+        {
+            NewSpeed = 0;
+        }
+        else if (!Direction && NewSpeed > 0)
+        {
+            NewSpeed = 0;
+        }
+
         return NewSpeed;
     }
 }

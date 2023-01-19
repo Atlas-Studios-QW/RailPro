@@ -38,11 +38,11 @@ public class CameraMovement : MonoBehaviour
 
 
         PlayerPos = GH.Player.transform.position;
-        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * FixedCameraSpeed * Time.deltaTime * (PlayerPos.y / 100 + 0.1f) * 2, Input.GetAxis("ScrollWheel") * Time.deltaTime * -FixedCameraSpeed * 20, Input.GetAxis("Vertical") * FixedCameraSpeed * Time.deltaTime * (PlayerPos.y / 100 + 0.1f) * 2);
+        Vector3 Movement = PlayerPos + new Vector3(Input.GetAxis("Horizontal") * FixedCameraSpeed * Time.deltaTime * (PlayerPos.y / 100 + 0.1f), Input.GetAxis("ScrollWheel") * Time.deltaTime * -FixedCameraSpeed * 50, Input.GetAxis("Vertical") * FixedCameraSpeed * Time.deltaTime * (PlayerPos.y / 100 + 0.1f));
 
         Vector2 MapSize = Savegame.mapSize;
 
-        GH.Player.transform.position = Vector3.MoveTowards(PlayerPos, Movement, Time.deltaTime * CameraSpeed);
+        GH.Player.transform.position = Vector3.MoveTowards(PlayerPos, Movement, Time.deltaTime * CameraSpeed * 10);
 
         PlayerPos = GH.Player.transform.position;
 
