@@ -47,12 +47,17 @@ public class TrainController : MonoBehaviour
         }
 
         //Draw ray that will pick up colliders on track piece, then get the spline that is attached
-        if (ConnectedStock[0] != null)
+
+        print(ConnectedStock[0]);
+
+        if (ConnectedStock[0] == null)
         {
             RaycastHit hit;
             if (Physics.Raycast(Forward.transform.position, Vector3.down, out hit, 5f, LayerMask.GetMask("PathDetectors")))
             {
                 BezierCurve FoundSpline = hit.transform.GetComponent<BezierCurve>();
+
+                print("Found Spline");
 
                 if (FoundSpline != NextSpline)
                 {

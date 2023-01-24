@@ -40,6 +40,8 @@ public class GameHandler : MonoBehaviour
     [Header("Trains")]
     public List<Stock> Locomotives = new List<Stock>();
     public List<Stock> Traincars = new List<Stock>();
+    [HideInInspector]
+    List<Consist> Consists = new List<Consist>();
 
     [Header("Loaded Savegame")]
     public Savegame Savegame;

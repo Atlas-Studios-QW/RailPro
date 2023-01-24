@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 
@@ -15,7 +16,8 @@ public class Savegame
     public List<Tile> tiles;
     public int playerBalance;
 
-    public Savegame() {
+    public Savegame() 
+    {
         mapSize = new Vector2(10,10);
         tiles = new List<Tile>();
         playerBalance = 100000;
@@ -28,8 +30,6 @@ public class Savegame
         playerBalance = PlayerBalance;
     }
 }
-
-
 
 [System.Serializable]
 public enum BuildableType
@@ -112,5 +112,32 @@ public class Stock
         price = Price;
         maxSpeed = MaxSpeed;
         trainEffect = TrainEffect;
+    }
+}
+
+[System.Serializable]
+public class StockPostition
+{
+    public Vector3 position;
+    public Quaternion rotation;
+
+    public StockPostition(GameObject Object)
+    {
+        position = Object.transform.position;
+        rotation = Object.transform.rotation;
+    }
+}
+
+[System.Serializable]
+
+public class Consist
+{
+    public List<Stock> stock;
+    public List<StockPostition> positions;
+
+    public Consist()
+    {
+        stock = new List<Stock>();
+        positions = new List<StockPostition>();
     }
 }
