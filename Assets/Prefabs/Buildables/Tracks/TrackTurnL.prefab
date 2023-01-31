@@ -6484,6 +6484,7 @@ GameObject:
   - component: {fileID: 3356720778696015099}
   - component: {fileID: 5384784342512911513}
   - component: {fileID: 7079391189483408031}
+  - component: {fileID: 3735539193212165694}
   m_Layer: 6
   m_Name: SplineDetector
   m_TagString: SplineDetector
@@ -6555,6 +6556,21 @@ MonoBehaviour:
   points:
   - {fileID: 3914578029653623550}
   - {fileID: 8773863479028880843}
+--- !u!111 &3735539193212165694
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725495122296775742}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5932353940932903717
 GameObject:
   m_ObjectHideFlags: 0

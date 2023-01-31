@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2205056666074948244}
-  - component: {fileID: 5315755201937159968}
+  - component: {fileID: 2797221113818437237}
   - component: {fileID: 8570409527314379754}
   m_Layer: 0
   m_Name: NewTemplateLoco
@@ -99,7 +99,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5315755201937159968
+--- !u!114 &2797221113818437237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,28 +108,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6965641766841774431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2c25b5835eb8e4e97ee765d80e8b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 42fca03f50ac4504d87381b173ada8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GH: {fileID: 0}
-  Forward: {fileID: 7785295742653357097}
-  Reverse: {fileID: 6303333387081132291}
-  ConnectedStock: []
-  Direction: 1
-  Speed: 10
-  RequestedSpeed: 10
-  StockInfo:
-    name: 
-    description: 
-    type: 0
-    model: {fileID: 0}
-    icon: {fileID: 0}
-    price: 0
-    maxSpeed: 0
-    trainEffect: 0
-  NextSpline: {fileID: 0}
-  OnSpline: 0
-  FollowerLocations: []
 --- !u!95 &8570409527314379754
 Animator:
   serializedVersion: 4

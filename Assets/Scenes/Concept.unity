@@ -4027,12 +4027,12 @@ PrefabInstance:
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: TempSaveData.mapSize.x
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
       propertyPath: TempSaveData.mapSize.y
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 259633125043846038, guid: 990eb3adb6f00cd4f9c95e8ecf9fce83,
         type: 3}
